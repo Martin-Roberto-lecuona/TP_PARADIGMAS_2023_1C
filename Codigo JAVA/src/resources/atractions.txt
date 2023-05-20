@@ -1,40 +1,8 @@
-Moria
-10
-2
-6
-Aventura
-Minas Tirith 
-5
-2.5
-25
-Paisaje
-La Comarca
-3
-6.5
-150
-Degustacion
-Mordor
-25
-3
-4
-Aventura
-Abismo de Helm
-5
-2
-15
-Paisaje
-Lothlorien
-35
-1
-30
-Degustacion
-Erebor
-12
-3
-32
-Paisaje
-Bosque Negro
-3
-4
-12
-Aventura
+Dragonstone;12;4;22;AVENTURA
+Highgarden;50;2.5;18;DEGUSTACION
+King's Landing;75;3;7;DEGUSTACION
+Lannisport;25;1.5;2;DEGUSTACION
+The Iron Islands;10;5;10;AVENTURA
+The Vale of Arryn;18;3;107;PAISAJE
+The Wall;6;7;250;AVENTURA
+Winterfell;10.5;4.5;97;PAISAJE

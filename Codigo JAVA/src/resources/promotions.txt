@@ -1,0 +1,8 @@
+
+PORCENTUAL  ;   Dragonstone,The Wall                  ;   20%
+
+
+ABSOLUTE    ;   Highgarden,King's Landing             ;   15
+
+
+AXB         ;   Highgarden,King's Landing             ;   Lannisport

@@ -1,4 +1,5 @@
 package entities;
+
 import java.util.LinkedList;
 
 import enums.AtractionType;
@@ -6,15 +7,17 @@ import interfaces.Appointable;
 
 public class User implements Appointable<Atraction> {
 	
+	private String name = "";
 	private double budget = 0;
 	private double freeTime = 0;
-	private AtractionType preferredAtraccion = null;
+	private AtractionType preferredAtraction = null;
 	private LinkedList<Atraction> alreadyTakenAtractions = new LinkedList<Atraction>();
 
-	public User(double budget, int freeTime, AtractionType preferredAtraccion) {
+	public User(String name, double budget, double freeTime2, AtractionType preferredAtraction) {
+		this.name = name;
 		this.budget = budget;
-		this.freeTime = freeTime;
-		this.preferredAtraccion = preferredAtraccion;
+		this.freeTime = freeTime2;
+		this.preferredAtraction = preferredAtraction;
 	}
 
 	public double getBudget() {
@@ -44,11 +47,11 @@ public class User implements Appointable<Atraction> {
 	}
 
 	public AtractionType getPreferredAtraccion() {
-		return preferredAtraccion;
+		return preferredAtraction;
 	}
 
-	public void setPreferredAtraccion(AtractionType preferredAtraccion) {
-		this.preferredAtraccion = preferredAtraccion;
+	public void setPreferredAtraccion(AtractionType preferredAtraction) {
+		this.preferredAtraction = preferredAtraction;
 	}
 
 	@Override
@@ -79,6 +82,12 @@ public class User implements Appointable<Atraction> {
 		}
 
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [nombre=" + name + ", Presupuesto=" + budget + ", Tiempo Libre=" + freeTime + ", Atraccion preferida="
+				+ preferredAtraction + ", alreadyTakenAtractions=" + alreadyTakenAtractions + "]";
 	}
 
 }

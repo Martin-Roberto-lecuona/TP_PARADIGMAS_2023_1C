@@ -103,4 +103,15 @@ public class Atraction implements Appointable<User>, Comparable<Atraction> {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Atracción\nNombre: [" + name + "]\n-Precio: $" + cost + "\n-Duración: " + estimatedTime + "horas";
+	}
+	
+	
+	
+
+	
+	
+
 }
