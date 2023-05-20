@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Objects;
+
 import enums.AtractionType;
 import interfaces.Appointable;
 
@@ -101,6 +103,35 @@ public class Atraction implements Appointable<User>, Comparable<Atraction> {
 		}
 		return Double.compare(this.cost, a.getCost());
 
+	}
+	
+	
+	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(atractionType, cost, estimatedTime, maxSlots, name, takenSlots);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Atraction other = (Atraction) obj;
+		return atractionType == other.atractionType
+				&& Double.doubleToLongBits(cost) == Double.doubleToLongBits(other.cost)
+				&& Double.doubleToLongBits(estimatedTime) == Double.doubleToLongBits(other.estimatedTime)
+				&& maxSlots == other.maxSlots && Objects.equals(name, other.name) && takenSlots == other.takenSlots;
+	}
+	
+	
+	public boolean equalsName(String name)
+	{
+		return this.name == name;
 	}
 
 	@Override

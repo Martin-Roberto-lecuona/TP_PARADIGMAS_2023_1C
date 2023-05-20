@@ -29,7 +29,8 @@ public class AtractionArrayList {
 				AtractionType realAtractionType = AtractionType.valueOf(parsedValues[4].toUpperCase());
 
 				atractionArray.add(new Atraction(name, cost, estimatedTime, maxSlots, realAtractionType));
-
+				
+				
 			}
 
 			reader.close();

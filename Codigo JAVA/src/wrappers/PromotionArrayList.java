@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import entities.Porcentual;
 import entities.Promotion;
 import enums.PromotionType;
 
@@ -14,7 +15,7 @@ public class PromotionArrayList {
 
 	LinkedList<Promotion> PromotionArrayList = new LinkedList<Promotion>();
 
-	public void importPromotionsFromFile(String path) {
+	public void importPromotionsFromFile(String path, AtractionArrayList atractionList) {
 		try {
 			File file = new File(path);
 			Scanner reader = new Scanner(file);
@@ -23,20 +24,23 @@ public class PromotionArrayList {
 
 				String line = reader.nextLine();
 				String[] parsedValues = line.split(";");
-				List<String> items = Arrays.asList(parsedValues[1].split(","));
-				
-				
-				
-				
-				
-				
-				
-				
+				List<String> item = Arrays.asList(parsedValues[1].split(","));
 
-				
-				
+				double totalCost = 0;
+				double totalTime = 0;
+
+				for (String name : item) {
+
+					if (pos != -1) {
+
+					} else {
+						throw new RuntimeException("Invalid promotion exception gordo");
+					}
+
+				}
+
 				if (PromotionType.ABSOLUTA == PromotionType.valueOf(parsedValues[0])) {
-					
+
 				} else if (PromotionType.PORCENTUAL == PromotionType.valueOf(parsedValues[0])) {
 
 				} else {

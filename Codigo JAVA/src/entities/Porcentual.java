@@ -1,15 +1,16 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Porcentual extends Promotion {
 
 	private double percent = 0;
 
-	public Porcentual(double totalCost, double totalTime, ArrayList<String> atractionNames, double percent) {
+	public Porcentual(double totalCost, double totalTime, List<String> names, double percent) {
 
-		super(totalCost, totalTime, atractionNames);
-		this.percent = percent;
+		super(totalCost, totalTime, names);
+		this.percent = parsedValues;
 		calculateTotalWithDiscount();
 	}
 
