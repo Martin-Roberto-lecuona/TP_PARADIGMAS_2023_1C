@@ -7,10 +7,10 @@ import interfaces.Appointable;
 
 public class User implements Appointable<Atraction> {
 	
-	private String name = "";
-	private double budget = 0;
-	private double freeTime = 0;
-	private AtractionType preferredAtraction = null;
+	private String name;
+	private double budget;
+	private double freeTime;
+	private AtractionType preferredAtraction;
 	private LinkedList<Atraction> alreadyTakenAtractions = new LinkedList<Atraction>();
 
 	public User(String name, double budget, double freeTime2, AtractionType preferredAtraction) {
@@ -21,7 +21,10 @@ public class User implements Appointable<Atraction> {
 	}
 
 	public double getBudget() {
-		return budget;
+		return this.budget;
+	}
+	public String getName() {
+		return this.name;
 	}
 
 	public void getAlreadyTakenAtractions() {

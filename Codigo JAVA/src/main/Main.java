@@ -1,34 +1,45 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 import entities.Atraction;
-import wrappers.AtractionArrayList;
-import wrappers.UsersArrayList;
+import entities.Promotion;
+import entities.User;
+import myFiles.MyFiles;
 
 public class Main {
 
+	private static final String pathAtraction = "casos de prueba/in/atractions.in";
+	private static final String pathPromotions = "casos de prueba/in/promotions.in";
+	private static final String pathUsers = "casos de prueba/in/users.in";
+	
 	public static void main(String[] args) {
-
-		AtractionArrayList aal = new AtractionArrayList();
-		aal.importArtactionsFromFile(
-				"C:\\Users\\Centorios\\Documents\\GitHub\\TP_PARADIGMAS_2023_1C\\Codigo JAVA\\src\\resources\\atractions.txt");
-
 		
-		 for (Atraction atraction : aal.atractionArray) {
-		 System.out.println(atraction.toString()); 
-		 }
 		
-
-		UsersArrayList ual = new UsersArrayList();
-
-		ual.importUsersFromFile(
-				"C:\\Users\\Centorios\\Documents\\GitHub\\TP_PARADIGMAS_2023_1C\\Codigo JAVA\\src\\resources\\users.txt");
+		MyFiles atractionFile = new MyFiles (pathAtraction);
+		MyFiles promotionsFile = new MyFiles (pathPromotions);
+		MyFiles userFile = new MyFiles (pathUsers);
 		
-		/*
-		 for (User user : ual.usersArrayList) {
-		 System.out.println(user.toString()); 
-		 }
-		 */
-
+		ArrayList<Atraction> atractionArray = atractionFile.importArtactionsFromFile();
+		LinkedList<Promotion> PromotionArrayList = promotionsFile.importPromotionsFromFile(atractionArray);
+		ArrayList<User> usersArrayList = userFile.importUsersFromFile();
+		
+		for (User user : usersArrayList) {
+			
+			System.out.println(user.getName());
+			 //ArrayList<Promotion> = user.createSuggestionPromotion();
+			 //ArrayList<Atraction> = user.createSuggestionAtraction();
+		}
+		System.out.println("---------------------");
+		for (Atraction atr : atractionArray) {
+			System.out.println(atr);
+		}
+		System.out.println("---------------------");
+		for (Promotion pro : PromotionArrayList) {
+			System.out.println(pro);
+		}
+		
 	}
 
 }

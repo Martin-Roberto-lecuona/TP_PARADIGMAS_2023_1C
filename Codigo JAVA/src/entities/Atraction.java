@@ -7,12 +7,12 @@ import interfaces.Appointable;
 
 public class Atraction implements Appointable<User>, Comparable<Atraction> {
 
-	private double cost = 0;
-	private double estimatedTime = 0;
-	private int maxSlots = 0;
-	private int takenSlots = 0;
-	private AtractionType atractionType = null;
-	private String name = null;
+	private double cost;
+	private double estimatedTime;
+	private int maxSlots;
+	private int takenSlots;
+	private AtractionType atractionType;
+	private String name;
 
 	public Atraction(String name, double cost, double estimatedTime, int maxSlots, AtractionType atractionType) {
 		this.name = name;
@@ -20,6 +20,13 @@ public class Atraction implements Appointable<User>, Comparable<Atraction> {
 		this.estimatedTime = estimatedTime;
 		this.maxSlots = maxSlots;
 		this.atractionType = atractionType;
+	}
+	public Atraction(Atraction atr) {
+		this.name = atr.getName();
+		this.cost = atr.getCost();
+		this.estimatedTime = atr.getEstimatedTime();
+		this.maxSlots = atr.getMaxSlots();
+		this.atractionType = atr.getAtractionType();
 	}
 
 	public double getCost() {
@@ -104,9 +111,6 @@ public class Atraction implements Appointable<User>, Comparable<Atraction> {
 		return Double.compare(this.cost, a.getCost());
 
 	}
-	
-	
-	
 
 	@Override
 	public int hashCode() {
@@ -129,10 +133,7 @@ public class Atraction implements Appointable<User>, Comparable<Atraction> {
 	}
 	
 	
-	public boolean equalsName(String name)
-	{
-		return this.name == name;
-	}
+	
 
 	@Override
 	public String toString() {

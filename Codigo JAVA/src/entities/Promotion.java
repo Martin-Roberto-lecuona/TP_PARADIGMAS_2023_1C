@@ -6,13 +6,23 @@ public abstract class Promotion implements Comparable<Promotion> {
 
 	protected double totalCost = 0;
 	protected double totalTime = 0;
-	protected double discountedTotalCost = 0;
-	protected ArrayList<String> atractionNames = new ArrayList<String>();
+	protected double discountedTotalCost;
 
-	public Promotion(double totalCost, double totalTime, ArrayList<String> atractionNames) {
+	protected String[] atractionNames;
+	protected ArrayList<Atraction> atractionList = new ArrayList<Atraction>();
+
+	public Promotion(double totalCost, double totalTime, String[] atractionNames) {
 		this.totalCost = totalCost;
 		this.totalTime = totalTime;
 		this.atractionNames = atractionNames;
+	}
+	
+	public Promotion(ArrayList<Atraction> a ) {
+		this.atractionList.addAll(a);
+		for (Atraction atr : a) {
+			this.totalCost+=atr.getCost();
+			this.totalTime+=atr.getEstimatedTime();
+		}
 	}
 
 	public double getTotalCost() {
@@ -39,11 +49,11 @@ public abstract class Promotion implements Comparable<Promotion> {
 		this.discountedTotalCost = discountedTotalCost;
 	}
 
-	public ArrayList<String> getAtractionNames() {
+	public String[] getAtractionNames() {
 		return atractionNames;
 	}
 
-	public void setAtractionNames(ArrayList<String> atractionNames) {
+	public void setAtractionNames(String[] atractionNames) {
 		this.atractionNames = atractionNames;
 	}
 
