@@ -3,14 +3,12 @@ package entities;
 import java.util.Objects;
 
 import enums.AtractionType;
-import interfaces.Appointable;
 
-public class Atraction implements Appointable<User>, Comparable<Atraction> {
+public class Atraction implements Comparable<Atraction> {
 
 	private double cost;
 	private double estimatedTime;
-	private int maxSlots;
-	private int takenSlots;
+	private int slots;
 	private AtractionType atractionType;
 	private String name;
 
@@ -18,14 +16,15 @@ public class Atraction implements Appointable<User>, Comparable<Atraction> {
 		this.name = name;
 		this.cost = cost;
 		this.estimatedTime = estimatedTime;
-		this.maxSlots = maxSlots;
+		this.slots = maxSlots;
 		this.atractionType = atractionType;
 	}
+
 	public Atraction(Atraction atr) {
 		this.name = atr.getName();
 		this.cost = atr.getCost();
 		this.estimatedTime = atr.getEstimatedTime();
-		this.maxSlots = atr.getMaxSlots();
+		this.slots = atr.getSlots();
 		this.atractionType = atr.getAtractionType();
 	}
 
@@ -61,46 +60,14 @@ public class Atraction implements Appointable<User>, Comparable<Atraction> {
 		this.estimatedTime = estimatedTime;
 	}
 
-	public int getMaxSlots() {
-		return maxSlots;
+	public int getSlots() {
+		return this.slots;
 	}
 
-	public void setMaxSlots(int maxSlots) {
-		this.maxSlots = maxSlots;
-	}
-
-	public int getTakenSlots() {
-		return takenSlots;
-	}
-
-	public void setTakenSlots(int takenSlots) {
-		this.takenSlots = takenSlots;
-	}
-
-	@Override
-	public boolean canGo(User user) {
-		if (this.takenSlots >= this.maxSlots) {
-			return false;
+	public void decreaseSlots() {
+		if (this.slots != 0) {
+			this.slots--;
 		}
-
-		if (user.getBudget() - this.cost < 0) {
-			return false;
-		}
-		if (user.getFreeTime() - this.estimatedTime < 0) {
-			return false;
-		}
-		return true;
-	}
-
-	@Override
-	public boolean appoint(User user) {
-		if (this.canGo(user)) {
-			user.setBudget(user.getBudget() - this.cost);
-			user.setFreeTime(user.getFreeTime() - this.estimatedTime);
-			user.addTakenAtraction(this);
-			return true;
-		}
-		return true;
 	}
 
 	@Override
@@ -114,7 +81,7 @@ public class Atraction implements Appointable<User>, Comparable<Atraction> {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(atractionType, cost, estimatedTime, maxSlots, name, takenSlots);
+		return Objects.hash(atractionType, cost, estimatedTime, slots, name);
 	}
 
 	@Override
@@ -129,21 +96,12 @@ public class Atraction implements Appointable<User>, Comparable<Atraction> {
 		return atractionType == other.atractionType
 				&& Double.doubleToLongBits(cost) == Double.doubleToLongBits(other.cost)
 				&& Double.doubleToLongBits(estimatedTime) == Double.doubleToLongBits(other.estimatedTime)
-				&& maxSlots == other.maxSlots && Objects.equals(name, other.name) && takenSlots == other.takenSlots;
+				&& Objects.equals(name, other.name);
 	}
-	
-	
-	
 
 	@Override
 	public String toString() {
-		return "Atracción\nNombre: [" + name + "]\n-Precio: $" + cost + "\n-Duración: " + estimatedTime + "horas";
+		return "\nNombre:" + name + " -Precio: $" + cost + "-Duración: " + estimatedTime + " hrs";
 	}
-	
-	
-	
-
-	
-	
 
 }

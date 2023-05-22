@@ -32,7 +32,9 @@ public class MyFiles {
 			File file = new File(this.name);
 			reader = new Scanner(file);
 			reader.useLocale(Locale.ENGLISH);
-
+			if (reader.hasNextLine()) {
+				reader.nextLine();
+			}
 			while (reader.hasNextLine()) {
 
 				String line = reader.nextLine();
@@ -63,7 +65,9 @@ public class MyFiles {
 			File file = new File(this.name);
 			reader = new Scanner(file);
 			reader.useLocale(Locale.ENGLISH);
-
+			if (reader.hasNextLine()) {
+				reader.nextLine();
+			}
 			while (reader.hasNextLine()) {
 
 				String line = reader.nextLine();
@@ -95,13 +99,15 @@ public class MyFiles {
 			File file = new File(this.name);
 			reader = new Scanner(file);
 			reader.useLocale(Locale.ENGLISH);
-
+			if (reader.hasNextLine()) {
+				reader.nextLine();
+			}
 			while (reader.hasNextLine()) {
-
+				promotionArrayList = new LinkedList<Promotion>();
+				atractionsWithPromotion = new ArrayList<Atraction>();
 				String line = reader.nextLine();
 				String[] parsedValues = line.split(";");
 				String[] atractionsInFIle = parsedValues[1].split(",");
-
 				atractionsWithPromotion.addAll(findAtractionByName(atractionList, atractionsInFIle));
 				if (PromotionType.AXB == PromotionType.valueOf(parsedValues[0])) {
 					/*

@@ -15,9 +15,7 @@ public class AxB extends Promotion{
 	
 	@Override
 	public String toString() {
-		return "AxB [free=" + free + ", totalCost=" + totalCost + ", totalTime=" + totalTime + ", discountedTotalCost="
-				+ discountedTotalCost + ", atractionNames=" + Arrays.toString(atractionNames) + ", atractionList="
-				+ atractionList + "]";
+		return super.toString() + " free: " + free.getName();
 	}
 
 	@Override

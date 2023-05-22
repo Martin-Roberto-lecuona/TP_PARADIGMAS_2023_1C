@@ -7,12 +7,6 @@ public class Porcentual extends Promotion {
 
 	private double percent = 0;
 
-	public Porcentual(double totalCost, double totalTime, String[] names, double percent) {
-
-		super(totalCost, totalTime, names);
-		this.percent = percent;
-		calculateTotalWithDiscount();
-	}
 	public Porcentual(ArrayList<Atraction> atractions, double percent) {
 
 		super(atractions);
@@ -20,12 +14,7 @@ public class Porcentual extends Promotion {
 		calculateTotalWithDiscount();
 	}
 
-	@Override
-	public String toString() {
-		return "Porcentual [percent=" + percent + ", totalCost=" + totalCost + ", totalTime=" + totalTime
-				+ ", discountedTotalCost=" + discountedTotalCost + ", atractionNames=" + Arrays.toString(atractionNames)
-				+ "]";
-	}
+
 
 	@Override
 	public void calculateTotalWithDiscount() {
