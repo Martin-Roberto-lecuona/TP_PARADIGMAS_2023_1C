@@ -15,32 +15,30 @@ public class Main {
 	private static final String pathPromotions = "casos de prueba/in/promotions.in";
 	private static final String pathUsers = "casos de prueba/in/users.in";
 	private static final String accepts = "S";
+
 	public static void main(String[] args) {
-		
-		
-		MyFiles atractionFile = new MyFiles (pathAtraction);
-		MyFiles promotionsFile = new MyFiles (pathPromotions);
-		MyFiles userFile = new MyFiles (pathUsers);
-		
-		
+
+		MyFiles atractionFile = new MyFiles(pathAtraction);
+		MyFiles promotionsFile = new MyFiles(pathPromotions);
+		MyFiles userFile = new MyFiles(pathUsers);
+
 		ArrayList<Atraction> atractionArray = atractionFile.importArtactionsFromFile();
 		LinkedList<Promotion> promotionArrayList = promotionsFile.importPromotionsFromFile(atractionArray);
 		ArrayList<User> usersArrayList = userFile.importUsersFromFile();
 		// clases tipo wrappers para estos arrays??
 		// ListAtraccion(atractionArray)
 		// ListPromotion(promotionArrayList)
+		Scanner input = new Scanner(System.in);
 		for (User user : usersArrayList) {
-			Scanner input  = new Scanner(System.in);
 			System.out.println(user.getName());
 			ArrayList<Promotion> sugerenciaPromo = user.createSuggestion(promotionArrayList);
 			for (Promotion promo : sugerenciaPromo) {
-				// search promo.listaAtracciones 
+				// search promo.listaAtracciones
 				System.out.println(promo);
 				System.out.println("Acepta la Promo 'S' para si 'N' para no ");
-			
 				String option = input.next();
-				input.skip("/\\n/");
-				if (option == accepts) {
+
+				if (option.contains(accepts)) {
 					// promo.deletePromotionWithSameAtraction(sugerenciaPromo);
 					for (Atraction atr : atractionArray) {
 						System.out.println(atr + " | " + atr.getSlots());
@@ -54,16 +52,15 @@ public class Main {
 			}
 			System.out.println("------------------------");
 			for (Atraction atr : atractionArray) {
-				//System.out.println(atr + " | " + atr.getSlots());
+				// System.out.println(atr + " | " + atr.getSlots());
 			}
-			// ArrayList<Atraction> sugerenciaAtraccion = user.createSuggestion(atractionArray);
+			// ArrayList<Atraction> sugerenciaAtraccion =
+			// user.createSuggestion(atractionArray);
 			// foreach recorrer cuando se acepta se popea de la lista de sugerencia
 			// Append file de compra
-			
-			
-			input.close();
-			
+
 		}
+		input.close();
 
 	}
 

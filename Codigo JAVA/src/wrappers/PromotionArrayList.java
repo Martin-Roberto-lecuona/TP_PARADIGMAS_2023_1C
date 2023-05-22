@@ -31,11 +31,6 @@ public class PromotionArrayList {
 
 				for (String name : item) {
 
-					if (pos != -1) {
-
-					} else {
-						throw new RuntimeException("Invalid promotion exception gordo");
-					}
 
 				}
 
