@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import entities.Atraction;
 import entities.Promotion;
+import entities.Purchase;
 import entities.User;
 import myFiles.MyFiles;
 
@@ -14,7 +15,7 @@ public class Main {
 	private static final String pathAtraction = "casos de prueba/in/atractions.in";
 	private static final String pathPromotions = "casos de prueba/in/promotions.in";
 	private static final String pathUsers = "casos de prueba/in/users.in";
-	private static final String accepts = "S";
+	private static final String accepts = "SsyY";
 
 	public static void main(String[] args) {
 
@@ -25,43 +26,61 @@ public class Main {
 		ArrayList<Atraction> atractionArray = atractionFile.importArtactionsFromFile();
 		LinkedList<Promotion> promotionArrayList = promotionsFile.importPromotionsFromFile(atractionArray);
 		ArrayList<User> usersArrayList = userFile.importUsersFromFile();
-		// clases tipo wrappers para estos arrays??
-		// ListAtraccion(atractionArray)
-		// ListPromotion(promotionArrayList)
+
+		System.out.println("------------------------");
+		for (Atraction atr : atractionArray) {
+			System.out.println(atr.getName() + " | " + atr.getSlots());
+		}
+		System.out.println("------------------------");
 		Scanner input = new Scanner(System.in);
 		for (User user : usersArrayList) {
+			Purchase compra = new Purchase(user);
 			System.out.println(user.getName());
 			ArrayList<Promotion> sugerenciaPromo = user.createSuggestion(promotionArrayList);
 			for (Promotion promo : sugerenciaPromo) {
-				// search promo.listaAtracciones
+				System.out.println("La Promocion que le presentamos es: " + promo);
 				System.out.println(promo);
 				System.out.println("Acepta la Promo 'S' para si 'N' para no ");
 				String option = input.next();
 
-				if (option.contains(accepts)) {
+				if (accepts.contains(option)) {
 					// promo.deletePromotionWithSameAtraction(sugerenciaPromo);
-					for (Atraction atr : atractionArray) {
-						System.out.println(atr + " | " + atr.getSlots());
-					}
-					promo.decreaseSlots(atractionArray);
-					for (Atraction atr : atractionArray) {
-						System.out.println(atr + " | " + atr.getSlots());
-					}
-					// user.appoint(promo);
+					decreaseSlotsToAllAtractionsInPromo(promo);
+					compra.add(promo);
 				}
 			}
-			System.out.println("------------------------");
-			for (Atraction atr : atractionArray) {
-				// System.out.println(atr + " | " + atr.getSlots());
+			/*
+			ArrayList<Atraction> sugerenciaAtraction = user.createSuggestion(atractionArray);
+			for (Atraction atr : sugerenciaAtraction) {
+				System.out.println("La Atraccion que le presentamos es: " + atr);
+				System.out.println(atr);
+				System.out.println("Acepta la Atraccion 'S' para si 'N' para no ");
+				String option = input.next();
+
+				if (accepts.contains(option)) {
+					// promo.deletePromotionWithSameAtraction(sugerenciaPromo);
+					atr.decreaseSlots();
+					// compra.add(dc);
+				}
 			}
-			// ArrayList<Atraction> sugerenciaAtraccion =
-			// user.createSuggestion(atractionArray);
-			// foreach recorrer cuando se acepta se popea de la lista de sugerencia
-			// Append file de compra
+			*/
+			
 
+			break;
 		}
+		System.out.println("------------------------");
+		for (Atraction atr : atractionArray) {
+			System.out.println(atr.getName() + " | " + atr.getSlots());
+		}
+		System.out.println("------------------------");
 		input.close();
+	}
+	
 
+	private static void decreaseSlotsToAllAtractionsInPromo(Promotion promo) {
+		for (Atraction atr : promo.getAtractionList()) {
+			atr.decreaseSlots();
+		}
 	}
 
 }

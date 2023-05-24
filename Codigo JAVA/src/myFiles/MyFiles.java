@@ -108,19 +108,24 @@ public class MyFiles {
 				String line = reader.nextLine();
 				String[] parsedValues = line.split(";");
 				String[] atractionsInFIle = parsedValues[1].split(",");
-				atractionsWithPromotion.addAll(findAtractionByName(atractionList, atractionsInFIle));
-				if (PromotionType.AXB == PromotionType.valueOf(parsedValues[0])) {
-					/*
-					 * Como funciona esta promo mas de una gratis puede haber? OP1 te oferto n
-					 * atracciones y una de ellas es gratis OP2 si compraste el el pasado, en otro
-					 * paquete entoces ahora es valida la promocion y se te oferta
-					 */
-					Atraction free = findAtractionByName(atractionList, parsedValues[2]);
-					promotionArrayList.add(new AxB(atractionsWithPromotion, free));
-				} else if (PromotionType.ABSOLUTA == PromotionType.valueOf(parsedValues[0])) {
-					promotionArrayList.add(new Absoluta(atractionsWithPromotion, Double.valueOf(parsedValues[2])));
-				} else {
-					promotionArrayList.add(new Porcentual(atractionsWithPromotion, Double.valueOf(parsedValues[2])));
+				
+				atractionsWithPromotion = findAtractionByName(atractionList, atractionsInFIle);
+				
+				if (!atractionsWithPromotion.isEmpty()) {
+					if (PromotionType.AXB == PromotionType.valueOf(parsedValues[0])) {
+						/*
+						 * Como funciona esta promo mas de una gratis puede haber? OP1 te oferto n
+						 * atracciones y una de ellas es gratis OP2 si compraste el el pasado, en otro
+						 * paquete entoces ahora es valida la promocion y se te oferta
+						 */
+						Atraction free = findAtractionByName(atractionList, parsedValues[2]);
+						promotionArrayList.add(new AxB(atractionsWithPromotion, free));
+					} else if (PromotionType.ABSOLUTA == PromotionType.valueOf(parsedValues[0])) {
+						promotionArrayList.add(new Absoluta(atractionsWithPromotion, Double.valueOf(parsedValues[2])));
+					} else {
+						promotionArrayList
+								.add(new Porcentual(atractionsWithPromotion, Double.valueOf(parsedValues[2])));
+					}
 				}
 
 			}
