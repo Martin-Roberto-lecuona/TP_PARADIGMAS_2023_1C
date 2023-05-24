@@ -1,7 +1,6 @@
 package entities;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import enums.AtractionType;
 
@@ -87,8 +86,8 @@ public abstract class Promotion implements Comparable<Promotion> {
 
 	@Override
 	public String toString() {
-		return "totalCost: " + totalCost + ", totalTime: " + totalTime + ", discountedTotalCost: " + discountedTotalCost
-				+ ", promotionType: " + promotionType + this.atractionList;
+		return "" + promotionType + " -Precio: $" + totalCost + "-Duración: " + totalTime + ", -Precio con descuento: $ "
+				+ discountedTotalCost + "Incluye: " + this.atractionList;
 	}
 
 	public abstract void calculateTotalWithDiscount();

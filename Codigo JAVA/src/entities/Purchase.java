@@ -4,8 +4,17 @@ import java.util.ArrayList;
 
 public class Purchase {
 	private static final String EOL = "\n";
+	private static final String TAB = "\t";
 	private ArrayList<Promotion> promotions = new ArrayList<Promotion>();
+	public ArrayList<Promotion> getPromotions() {
+		return promotions;
+	}
+
 	private ArrayList<Atraction> atractions = new ArrayList<Atraction>();
+	public ArrayList<Atraction> getAtractions() {
+		return atractions;
+	}
+
 	private double totalCost = 0;
 	private User userPurchasing;
 
@@ -17,13 +26,13 @@ public class Purchase {
 	public String toString() {
 		String res = this.userPurchasing.getName() + EOL;
 		if (!promotions.isEmpty()) {
-			res = res + "Adquirio las siguientes promociones: " + promotions + EOL;
+			res = res + TAB + "Adquirio las siguientes promociones: " + this.promotions + EOL;
 		}
 		if (!atractions.isEmpty()) {
-			res = res + "Adquirio las siguientes Atracciones: " + promotions + EOL;
+			res = res + TAB +"Adquirio las siguientes Atracciones: " + this.atractions + EOL;
 		}
 		if (promotions.isEmpty() && atractions.isEmpty()) {
-			res = res + "No ha hecho compras"+ EOL;
+			res = res + TAB +"No ha hecho compras"+ EOL;
 		}
 		return res;
 	}
@@ -53,5 +62,6 @@ public class Purchase {
 	public void setUserPurchasing(User userPurchasing) {
 		this.userPurchasing = userPurchasing;
 	}
+
 
 }

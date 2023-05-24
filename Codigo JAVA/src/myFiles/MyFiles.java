@@ -2,8 +2,9 @@ package myFiles;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -91,8 +92,8 @@ public class MyFiles {
 
 	}
 
-	public LinkedList<Promotion> importPromotionsFromFile(ArrayList<Atraction> atractionList) {
-		LinkedList<Promotion> promotionArrayList = new LinkedList<Promotion>();
+	public ArrayList<Promotion> importPromotionsFromFile(ArrayList<Atraction> atractionList) {
+		ArrayList<Promotion> promotionArrayList = new ArrayList<Promotion>();
 		ArrayList<Atraction> atractionsWithPromotion = new ArrayList<Atraction>();
 		Scanner reader = null;
 		try {
@@ -103,22 +104,21 @@ public class MyFiles {
 				reader.nextLine();
 			}
 			while (reader.hasNextLine()) {
-				promotionArrayList = new LinkedList<Promotion>();
 				atractionsWithPromotion = new ArrayList<Atraction>();
 				String line = reader.nextLine();
 				String[] parsedValues = line.split(";");
 				String[] atractionsInFIle = parsedValues[1].split(",");
 				
+
 				atractionsWithPromotion = findAtractionByName(atractionList, atractionsInFIle);
-				
+
 				if (!atractionsWithPromotion.isEmpty()) {
 					if (PromotionType.AXB == PromotionType.valueOf(parsedValues[0])) {
 						/*
-						 * Como funciona esta promo mas de una gratis puede haber? OP1 te oferto n
-						 * atracciones y una de ellas es gratis OP2 si compraste el el pasado, en otro
-						 * paquete entoces ahora es valida la promocion y se te oferta
+						 * puede haber mas de una gratis
 						 */
-						Atraction free = findAtractionByName(atractionList, parsedValues[2]);
+						String[] atractionsFreeInFIle = parsedValues[2].split(",");
+						ArrayList<Atraction> free = findAtractionByName(atractionList, atractionsFreeInFIle);
 						promotionArrayList.add(new AxB(atractionsWithPromotion, free));
 					} else if (PromotionType.ABSOLUTA == PromotionType.valueOf(parsedValues[0])) {
 						promotionArrayList.add(new Absoluta(atractionsWithPromotion, Double.valueOf(parsedValues[2])));
@@ -162,5 +162,23 @@ public class MyFiles {
 				res = new Atraction(origin.get(i));
 		}
 		return res;
+	}
+
+	public void appendToFile(Object data, boolean append) {
+		FileWriter writer = null;
+		try {
+			writer = new FileWriter(this.name, append);
+			writer.write(data + EOL);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (writer != null) {
+				try {
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }
