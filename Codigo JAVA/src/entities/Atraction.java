@@ -72,10 +72,10 @@ public class Atraction implements Comparable<Atraction> {
 
 	@Override
 	public int compareTo(Atraction a) {
-		if (Double.compare(this.cost, a.getCost()) == 0) {
-			return Double.compare(this.estimatedTime, a.getEstimatedTime());
+		if (Double.compare(a.getCost(), this.cost) == 0) {
+			return Double.compare(a.getEstimatedTime(), this.estimatedTime);
 		}
-		return Double.compare(this.cost, a.getCost());
+		return Double.compare(a.getCost(), this.cost);
 
 	}
 
@@ -101,7 +101,8 @@ public class Atraction implements Comparable<Atraction> {
 
 	@Override
 	public String toString() {
-		return "\nNombre:	" + name + "	-Precio:$" + cost + "	-Duración:" + estimatedTime + "hrs" + "	-Disponibles: " + slots ;
+		return "\nNombre:	" + name + "	-Precio:$" + cost + "	-Duración:" + estimatedTime + "hrs"
+				+ "	-Disponibles: " + slots;
 	}
 
 }

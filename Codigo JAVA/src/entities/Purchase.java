@@ -6,22 +6,30 @@ public class Purchase {
 	private static final String EOL = "\n";
 	private static final String TAB = "\t";
 	private ArrayList<Promotion> promotions = new ArrayList<Promotion>();
-
-	public ArrayList<Promotion> getPromotions() {
-		return promotions;
-	}
-
 	private ArrayList<Atraction> atractions = new ArrayList<Atraction>();
-
-	public ArrayList<Atraction> getAtractions() {
-		return atractions;
-	}
 
 	private double totalCost = 0;
 	private User userPurchasing;
 
 	public Purchase(User u) {
 		this.setUserPurchasing(u);
+	}
+
+	public ArrayList<Promotion> getPromotions() {
+		return promotions;
+	}
+
+	public ArrayList<Atraction> getAtractions() {
+		return atractions;
+	}
+
+	public ArrayList<Atraction> getAllAtractions() {
+		ArrayList<Atraction> res = new ArrayList<Atraction>();
+		for (Promotion pro : this.promotions) {
+			res.addAll(pro.getAtractionList());
+		}
+		res.addAll( this.atractions);
+		return res;
 	}
 
 	@Override

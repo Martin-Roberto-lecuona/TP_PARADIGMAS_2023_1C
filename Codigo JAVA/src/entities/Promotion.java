@@ -77,17 +77,17 @@ public abstract class Promotion implements Comparable<Promotion> {
 	@Override
 	public int compareTo(Promotion p) {
 		;
-		if (Double.compare(this.discountedTotalCost, p.discountedTotalCost) == 0) {
-			return Double.compare(this.totalTime, p.totalTime);
+		if (Double.compare(p.discountedTotalCost, this.discountedTotalCost) == 0) {
+			return Double.compare(p.totalTime, this.totalTime);
 		} else {
-			return Double.compare(this.discountedTotalCost, p.discountedTotalCost);
+			return Double.compare(p.discountedTotalCost, this.discountedTotalCost);
 		}
 	}
 
 	@Override
 	public String toString() {
 		String regex = "[\\]\\[]";
-		return  promotionType + "\n-Precio: $" + totalCost + ", -Duración: " + totalTime + ", -Precio con descuento: $"
+		return promotionType + "\n-Precio: $" + totalCost + ", -Duración: " + totalTime + ", -Precio con descuento: $"
 				+ discountedTotalCost + "\nIncluye:" + (this.atractionList.toString()).replaceAll(regex, "") + "\n";
 	}
 

@@ -21,51 +21,61 @@ public class User {
 	}
 
 	public Promotion createNewPromotionSuggestion(ArrayList<Promotion> promotionArrayList, int[] cont,
-			boolean basedOnPreference) {
-		boolean canGoBan = false;
-		int i;
+			boolean basedOnPreferred, ArrayList<Atraction> alreadyTaken) {
+		int i = cont[0];
+		boolean ifCanGo, preferred;
+		while (i < promotionArrayList.size()) {
 
-		for (i = cont[0]; i < promotionArrayList.size() - 1 && !canGoBan; i++) {
-			canGoBan = canGo(promotionArrayList.get(i));
-			if (canGoBan) {
+			ifCanGo = this.canGo(promotionArrayList.get(i))
+					&& canGoAlreadyTaken(promotionArrayList.get(i).getAtractionList(), alreadyTaken);
 
-				if (basedOnPreference) {
-					canGoBan = (promotionArrayList.get(i).getPromotionType() == this.preferredAtraction);
-				}
-				if (!basedOnPreference) {
-					canGoBan = (promotionArrayList.get(i).getPromotionType() != this.preferredAtraction);
-				}
+			if (basedOnPreferred) {
+				preferred = promotionArrayList.get(i).getPromotionType() == this.preferredAtraction;
+			} else {
+				preferred = promotionArrayList.get(i).getPromotionType() != this.preferredAtraction;
 			}
 
+			if (ifCanGo && preferred) {
+				cont[0] = i;
+				return promotionArrayList.get(i);
+			}
+			i++;
+
 		}
-		if (!canGoBan) {
-			return null;
-		}
-		cont[0] = i-1;
-		return promotionArrayList.get(i - 1);
+		return null;
 	}
 
-	public Atraction createNewAtractionSuggestion(ArrayList<Atraction> atractionArray, int[]  cont,
-			boolean basedOnPreference) {
-		boolean canGoBan = false;
-		int i;
-		for (i = cont[0] ; i < atractionArray.size() - 1 && !canGoBan; i++) {
-			canGoBan = canGo(atractionArray.get(i));
-
-			if (canGoBan) {
-				if (basedOnPreference) {
-					canGoBan = (atractionArray.get(i).getAtractionType() == this.preferredAtraction);
-				}
-				if (!basedOnPreference) {
-					canGoBan = (atractionArray.get(i).getAtractionType() != this.preferredAtraction);
-				}
+	private boolean canGoAlreadyTaken(ArrayList<Atraction> atractionList, ArrayList<Atraction> alreadyTaken) {
+		for (Atraction atr : atractionList) {
+			if (alreadyTaken.contains(atr)) {
+				return false;
 			}
 		}
-		if (!canGoBan) {
+		return true;
+	}
+
+	public Atraction createNewAtractionSuggestion(ArrayList<Atraction> atractionArray, int[] cont,
+			boolean basedOnPreferred, ArrayList<Atraction> alreadyTaken) {
+		int i = cont[0];
+		boolean ifCanGo, preferred;
+		if (!canGoAlreadyTaken(atractionArray, alreadyTaken)) {
+			cont[0] ++;
 			return null;
 		}
-		cont[0] = i - 1;
-		return atractionArray.get(i - 1);
+		while (i < atractionArray.size()) {
+			ifCanGo = this.canGo(atractionArray.get(i));
+			if (basedOnPreferred) {
+				preferred = atractionArray.get(i).getAtractionType() == this.preferredAtraction;
+			} else
+				preferred = atractionArray.get(i).getAtractionType() != this.preferredAtraction;
+
+			if (ifCanGo && preferred) {
+				cont[0] = i;
+				return atractionArray.get(i);
+			}
+			i++;
+		}
+		return null;
 	}
 
 	public boolean canGo(Atraction atrac) {
