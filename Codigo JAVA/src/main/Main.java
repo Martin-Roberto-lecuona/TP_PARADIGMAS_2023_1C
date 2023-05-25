@@ -9,6 +9,7 @@ import entities.FileParser;
 import entities.Promotion;
 import entities.Purchase;
 import entities.User;
+import interfaces.UserInterface;
 
 public class Main {
 
@@ -16,7 +17,7 @@ public class Main {
 	private static final String pathPromotions = "casos de prueba/in/promotions.in";
 	private static final String pathUsers = "casos de prueba/in/users.in";
 	private static final String pathPurchases = "casos de prueba/out/purchases.out";
-	private static final String accepts = "SsyY";
+
 
 	public static void main(String[] args) {
 
@@ -38,11 +39,11 @@ public class Main {
 			Purchase compra = new Purchase(user);
 			System.out.println(user.getName());
 
-			askUserForPromotions(promotionArrayList, input, user, compra, true);
-			askUserForAtractions(atractionArray, input, user, compra, true);
+			UserInterface.askUserForPromotions(promotionArrayList, input, user, compra, true);
+			UserInterface.askUserForAtractions(atractionArray, input, user, compra, true);
 
-			askUserForPromotions(promotionArrayList, input, user, compra, false);
-			askUserForAtractions(atractionArray, input, user, compra, false);
+			UserInterface.askUserForPromotions(promotionArrayList, input, user, compra, false);
+			UserInterface.askUserForAtractions(atractionArray, input, user, compra, false);
 
 			System.out.println("-----------------------------------");
 			System.out.println(compra);
@@ -53,55 +54,6 @@ public class Main {
 
 	}
 
-	private static void askUserForAtractions(ArrayList<Atraction> atractionArray, Scanner input, User user,
-			Purchase compra, boolean basedOnPreferred) {
-		int[] cont = { 0 }; // para poder pasar por referecia tiene que ser un array
-		Atraction atr = user.createNewAtractionSuggestion(atractionArray, cont, basedOnPreferred,
-				compra.getAllAtractions());
-		while (atr != null) {
-			System.out.println("La Atraccion que le presentamos es: " + atr);
-			System.out.println("Acepta la Atraccion 'S' para si 'N' para no ");
-			String option = input.next();
 
-			if (accepts.contains(option)) {
-				user.appoint(atr);
-				atr.decreaseSlots();
-				compra.add(atr);
-			}
-			cont[0]++;
-
-			atr = user.createNewAtractionSuggestion(atractionArray, cont, basedOnPreferred, compra.getAllAtractions());
-		}
-	}
-
-	private static void askUserForPromotions(ArrayList<Promotion> promotionArrayList, Scanner input, User user,
-			Purchase compra, boolean basedOnPreferred) {
-		int[] cont = { 0 };// para poder pasar por referecia tiene que ser un array
-
-		Promotion promo = user.createNewPromotionSuggestion(promotionArrayList, cont, basedOnPreferred,
-				compra.getAllAtractions());
-
-		while (promo != null) {
-
-			System.out.println("La Promocion que le presentamos es: " + promo);
-			System.out.println("Acepta la Promo 'S' para si 'N' para no ");
-			String option = input.next();
-
-			if (accepts.contains(option)) {
-				user.appoint(promo);
-				decreaseSlotsToAllAtractionsInPromo(promo);
-				compra.add(promo);
-			}
-			cont[0]++;
-			promo = user.createNewPromotionSuggestion(promotionArrayList, cont, basedOnPreferred,
-					compra.getAllAtractions());
-		}
-	}
-
-	private static void decreaseSlotsToAllAtractionsInPromo(Promotion promo) {
-		for (Atraction atr : promo.getAtractionList()) {
-			atr.decreaseSlots();
-		}
-	}
 
 }

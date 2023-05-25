@@ -101,4 +101,10 @@ public abstract class Promotion implements Comparable<Promotion> {
 		this.promotionType = promotionType;
 	}
 
+	public void decreaseSlotsToAllAtractionsInPromo() {
+		for (Atraction atr : this.getAtractionList()) {
+			atr.decreaseSlots();
+		}
+	}
+
 }
