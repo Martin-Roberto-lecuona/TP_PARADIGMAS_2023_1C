@@ -33,6 +33,7 @@ public class User {
 		}
 		return res;
 	}
+
 	public ArrayList<Atraction> createSuggestion(ArrayList<Atraction> atractionArray) {
 		ArrayList<Atraction> res = new ArrayList<Atraction>();
 
@@ -44,35 +45,36 @@ public class User {
 		}
 		return res;
 	}
+
 	public Promotion createNewPromotionSuggestion(ArrayList<Promotion> promotionArrayList, int cont) {
-		boolean canGoBan= false;
+		boolean canGoBan = false;
 		int i;
-		
+
 		for (i = cont; i < promotionArrayList.size() && !canGoBan; i++) {
-			canGoBan = canGo(promotionArrayList.get(i)) && (promotionArrayList.get(i).getPromotionType() == this.preferredAtraction);
+			canGoBan = canGo(promotionArrayList.get(i))
+					&& (promotionArrayList.get(i).getPromotionType() == this.preferredAtraction);
 		}
 		if (!canGoBan) {
 			return null;
 		}
-		return promotionArrayList.get(i-1);
+		return promotionArrayList.get(i - 1);
 	}
+
 	public Atraction createNewAtractionSuggestion(ArrayList<Atraction> atractionArray, int cont) {
-		boolean canGoban= false;
+		boolean canGoban = false;
 		int i;
 		for (i = cont; i < atractionArray.size() && !canGoban; i++) {
-			canGoban = canGo(atractionArray.get(i)) && (atractionArray.get(i).getAtractionType() == this.preferredAtraction);
+			canGoban = canGo(atractionArray.get(i))
+					&& (atractionArray.get(i).getAtractionType() == this.preferredAtraction);
 		}
 		if (!canGoban) {
 			return null;
 		}
-		return atractionArray.get(i-1);
+		return atractionArray.get(i - 1);
 	}
 
-	
-
 	public boolean canGo(Atraction atrac) {
-		if (atrac.getSlots() <= 0 
-				|| Double.compare(this.budget, atrac.getCost()) < 0
+		if (atrac.getSlots() <= 0 || Double.compare(this.budget, atrac.getCost()) < 0
 				|| Double.compare(this.freeTime, atrac.getEstimatedTime()) < 0) {
 			return false;
 		}
@@ -81,16 +83,16 @@ public class User {
 	}
 
 	public boolean canGo(Promotion promo) {
-		
-		if (Double.compare(this.budget, promo.getDiscountedTotalCost()) < 0 
-				||  Double.compare(this.freeTime, promo.getTotalTime()) < 0 ) {
+
+		if (Double.compare(this.budget, promo.getDiscountedTotalCost()) < 0
+				|| Double.compare(this.freeTime, promo.getTotalTime()) < 0) {
 			return false;
 		}
-		
-		boolean flagCanGoAtraction = true; 
-		
+
+		boolean flagCanGoAtraction = true;
+
 		for (int i = 0; i < promo.getAtractionList().size() && flagCanGoAtraction; i++) {
-			flagCanGoAtraction = promo.getAtractionList().get(i).getSlots() > 0  ;
+			flagCanGoAtraction = promo.getAtractionList().get(i).getSlots() > 0;
 		}
 
 		return flagCanGoAtraction;
@@ -112,6 +114,7 @@ public class User {
 		return "nombre=" + name + ", Presupuesto=" + budget + ", Tiempo Libre=" + freeTime + ", Atraccion preferida="
 				+ preferredAtraction;
 	}
+
 	public double getBudget() {
 		return this.budget;
 	}

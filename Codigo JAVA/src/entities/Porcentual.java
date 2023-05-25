@@ -1,7 +1,6 @@
 package entities;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Porcentual extends Promotion {
 
@@ -14,11 +13,9 @@ public class Porcentual extends Promotion {
 		calculateTotalWithDiscount();
 	}
 
-
-
 	@Override
 	public void calculateTotalWithDiscount() {
-		this.discountedTotalCost = this.totalCost * this.percent;
+		this.discountedTotalCost = this.totalCost - (this.totalCost * this.percent);
 	}
 
 }

@@ -1,7 +1,6 @@
 package entities;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Absoluta extends Promotion {
 	private double absolute = 0;
@@ -16,6 +15,6 @@ public class Absoluta extends Promotion {
 	
 	@Override
 	public void calculateTotalWithDiscount() {
-		this.discountedTotalCost = this.totalCost * this.absolute;
+		this.discountedTotalCost = this.totalCost - this.absolute;
 	}
 }

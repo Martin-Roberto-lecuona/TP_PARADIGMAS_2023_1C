@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.Scanner;
 
 import entities.Atraction;
+import entities.FileParser;
 import entities.Promotion;
 import entities.Purchase;
 import entities.User;
-import myFiles.MyFiles;
 
 public class Main {
 
@@ -20,10 +20,10 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		MyFiles atractionFile = new MyFiles(pathAtraction);
-		MyFiles promotionsFile = new MyFiles(pathPromotions);
-		MyFiles userFile = new MyFiles(pathUsers);
-		MyFiles purchaseFile = new MyFiles(pathPurchases);
+		FileParser atractionFile = new FileParser(pathAtraction);
+		FileParser promotionsFile = new FileParser(pathPromotions);
+		FileParser userFile = new FileParser(pathUsers);
+		FileParser purchaseFile = new FileParser(pathPurchases);
 
 		ArrayList<Atraction> atractionArray = atractionFile.importArtactionsFromFile();
 		Collections.sort(atractionArray);
