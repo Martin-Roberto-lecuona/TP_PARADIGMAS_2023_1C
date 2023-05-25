@@ -1,4 +1,6 @@
-Tipo;Atracciones;valor
 PORCENTUAL;Dragonstone,The Wall;0.2
-ABSOLUTA;Highgarden,King's Landing;15
+ABSOLUTA;Highgarden,King's Landing;10
 AXB;Highgarden,King's Landing;Lannisport
+PORCENTUAL;The Vale of Arryn,Winterfell;0.15
+ABSOLUTA;Dragonstone;6
+AXB;Winterfell;The Vale of Arryn
