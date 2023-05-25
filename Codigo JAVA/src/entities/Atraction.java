@@ -101,7 +101,7 @@ public class Atraction implements Comparable<Atraction> {
 
 	@Override
 	public String toString() {
-		return "\nNombre:" + name + " -Precio: $" + cost + "-Duración: " + estimatedTime + " hrs" + "-Disponibles: " + slots ;
+		return "\nNombre:	" + name + "	-Precio:$" + cost + "	-Duración:" + estimatedTime + "hrs" + "	-Disponibles: " + slots ;
 	}
 
 }

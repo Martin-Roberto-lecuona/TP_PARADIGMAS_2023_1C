@@ -86,8 +86,9 @@ public abstract class Promotion implements Comparable<Promotion> {
 
 	@Override
 	public String toString() {
-		return "" + promotionType + " -Precio: $" + totalCost + "-Duración: " + totalTime + ", -Precio con descuento: $ "
-				+ discountedTotalCost + "Incluye: " + this.atractionList;
+		String regex = "[\\]\\[]";
+		return  promotionType + "\n-Precio: $" + totalCost + ", -Duración: " + totalTime + ", -Precio con descuento: $"
+				+ discountedTotalCost + "\nIncluye:" + (this.atractionList.toString()).replaceAll(regex, "") + "\n";
 	}
 
 	public abstract void calculateTotalWithDiscount();
