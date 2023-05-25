@@ -147,18 +147,6 @@ public class FileParser {
 		return res;
 	}
 
-	/*
-	private Atraction findAtractionByName(ArrayList<Atraction> origin, String atractions) {
-		Atraction res = null;
-		boolean found = false;
-		for (int i = 0; !found && i < origin.size(); i++) {
-			found = (atractions.equals(origin.get(i).getName()));
-			if (found)
-				res = new Atraction(origin.get(i));
-		}
-		return res;
-	}
-	*/
 
 	public void appendToFile(Object data, boolean append) {
 		FileWriter writer = null;

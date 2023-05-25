@@ -1,8 +1,6 @@
 package entities;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
 
 import enums.AtractionType;
 
@@ -22,54 +20,51 @@ public class User {
 		this.preferredAtraction = preferredAtraction;
 	}
 
-	public ArrayList<Promotion> createSuggestion(LinkedList<Promotion> promotionArrayList) {
-		ArrayList<Promotion> res = new ArrayList<Promotion>();
-
-		Collections.sort(promotionArrayList);
-		for (Promotion promo : promotionArrayList) {
-			if (canGo(promo)) {
-				res.add(promo);
-			}
-		}
-		return res;
-	}
-
-	public ArrayList<Atraction> createSuggestion(ArrayList<Atraction> atractionArray) {
-		ArrayList<Atraction> res = new ArrayList<Atraction>();
-
-		Collections.sort(atractionArray);
-		for (Atraction atr : atractionArray) {
-			if (canGo(atr)) {
-				res.add(atr);
-			}
-		}
-		return res;
-	}
-
-	public Promotion createNewPromotionSuggestion(ArrayList<Promotion> promotionArrayList, int cont) {
+	public Promotion createNewPromotionSuggestion(ArrayList<Promotion> promotionArrayList, int[] cont,
+			boolean basedOnPreference) {
 		boolean canGoBan = false;
 		int i;
 
-		for (i = cont; i < promotionArrayList.size() && !canGoBan; i++) {
-			canGoBan = canGo(promotionArrayList.get(i))
-					&& (promotionArrayList.get(i).getPromotionType() == this.preferredAtraction);
+		for (i = cont[0]; i < promotionArrayList.size() - 1 && !canGoBan; i++) {
+			canGoBan = canGo(promotionArrayList.get(i));
+			if (canGoBan) {
+
+				if (basedOnPreference) {
+					canGoBan = (promotionArrayList.get(i).getPromotionType() == this.preferredAtraction);
+				}
+				if (!basedOnPreference) {
+					canGoBan = (promotionArrayList.get(i).getPromotionType() != this.preferredAtraction);
+				}
+			}
+
 		}
 		if (!canGoBan) {
 			return null;
 		}
+		cont[0] = i-1;
 		return promotionArrayList.get(i - 1);
 	}
 
-	public Atraction createNewAtractionSuggestion(ArrayList<Atraction> atractionArray, int cont) {
-		boolean canGoban = false;
+	public Atraction createNewAtractionSuggestion(ArrayList<Atraction> atractionArray, int[]  cont,
+			boolean basedOnPreference) {
+		boolean canGoBan = false;
 		int i;
-		for (i = cont; i < atractionArray.size() && !canGoban; i++) {
-			canGoban = canGo(atractionArray.get(i))
-					&& (atractionArray.get(i).getAtractionType() == this.preferredAtraction);
+		for (i = cont[0] ; i < atractionArray.size() - 1 && !canGoBan; i++) {
+			canGoBan = canGo(atractionArray.get(i));
+
+			if (canGoBan) {
+				if (basedOnPreference) {
+					canGoBan = (atractionArray.get(i).getAtractionType() == this.preferredAtraction);
+				}
+				if (!basedOnPreference) {
+					canGoBan = (atractionArray.get(i).getAtractionType() != this.preferredAtraction);
+				}
+			}
 		}
-		if (!canGoban) {
+		if (!canGoBan) {
 			return null;
 		}
+		cont[0] = i - 1;
 		return atractionArray.get(i - 1);
 	}
 
