@@ -20,32 +20,18 @@ public class User {
 		this.preferredAtraction = preferredAtraction;
 	}
 
-	public Promotion createNewPromotionSuggestion(ArrayList<Promotion> promotionArrayList, int[] cont,
-			boolean basedOnPreferred, ArrayList<Atraction> alreadyTaken) {
-		int i = cont[0];
-		boolean ifCanGo, preferred;
-		while (i < promotionArrayList.size()) {
+	
 
-			ifCanGo = this.canGo(promotionArrayList.get(i))
-					&& canGoAlreadyTaken(promotionArrayList.get(i).getAtractionList(), alreadyTaken);
-
-			if (basedOnPreferred) {
-				preferred = promotionArrayList.get(i).getPromotionType() == this.preferredAtraction;
-			} else {
-				preferred = promotionArrayList.get(i).getPromotionType() != this.preferredAtraction;
+	public boolean canGoAlreadyTaken(ArrayList<Atraction> offerArray, ArrayList<Atraction> alreadyTaken) {
+		for (Atraction atr : offerArray) {
+			if (alreadyTaken.contains(atr)) {
+				return false;
 			}
-
-			if (ifCanGo && preferred) {
-				cont[0] = i;
-				return promotionArrayList.get(i);
-			}
-			i++;
-
 		}
-		return null;
+		return true;
 	}
-
-	private boolean canGoAlreadyTaken(ArrayList<Atraction> atractionList, ArrayList<Atraction> alreadyTaken) {
+	
+	public boolean canGoAlreadyTakenAtr(ArrayList<Atraction> atractionList, ArrayList<Atraction> alreadyTaken) {
 		for (Atraction atr : atractionList) {
 			if (alreadyTaken.contains(atr)) {
 				return false;
@@ -54,33 +40,9 @@ public class User {
 		return true;
 	}
 
-	public Atraction createNewAtractionSuggestion(ArrayList<Atraction> atractionArray, int[] cont,
-			boolean basedOnPreferred, ArrayList<Atraction> alreadyTaken) {
-		int i = cont[0];
-		boolean ifCanGo, preferred;
-		if (!canGoAlreadyTaken(atractionArray, alreadyTaken)) {
-			cont[0] ++;
-			return null;
-		}
-		while (i < atractionArray.size()) {
-			ifCanGo = this.canGo(atractionArray.get(i));
-			if (basedOnPreferred) {
-				preferred = atractionArray.get(i).getAtractionType() == this.preferredAtraction;
-			} else
-				preferred = atractionArray.get(i).getAtractionType() != this.preferredAtraction;
-
-			if (ifCanGo && preferred) {
-				cont[0] = i;
-				return atractionArray.get(i);
-			}
-			i++;
-		}
-		return null;
-	}
-
-	public boolean canGo(Atraction atrac) {
-		if (atrac.getSlots() <= 0 || Double.compare(this.budget, atrac.getCost()) < 0
-				|| Double.compare(this.freeTime, atrac.getEstimatedTime()) < 0) {
+	public boolean canGo(Atraction atr) {
+		if (atr.getSlots() <= 0 || Double.compare(this.budget, atr.getTotalCost()) < 0
+				|| Double.compare(this.freeTime, atr.getTotalTime()) < 0) {
 			return false;
 		}
 
@@ -89,7 +51,7 @@ public class User {
 
 	public boolean canGo(Promotion promo) {
 
-		if (Double.compare(this.budget, promo.getDiscountedTotalCost()) < 0
+		if (Double.compare(this.budget, promo.getTotalCost()) < 0
 				|| Double.compare(this.freeTime, promo.getTotalTime()) < 0) {
 			return false;
 		}
@@ -103,9 +65,9 @@ public class User {
 		return flagCanGoAtraction;
 	}
 
-	public void appoint(Atraction atrac) {
-		this.budget = (this.budget - atrac.getCost());
-		this.freeTime = (this.freeTime - atrac.getEstimatedTime());
+	public void appoint(Offer atr) {
+		this.budget = (this.budget - atr.getTotalCost());
+		this.freeTime = (this.freeTime - atr.getTotalTime());
 	}
 
 	public void appoint(Promotion promo) {
@@ -120,25 +82,10 @@ public class User {
 				+ preferredAtraction;
 	}
 
-	public double getBudget() {
-		return this.budget;
-	}
-
 	public String getName() {
 		return this.name;
 	}
 
-	public void setBudget(double budget) {
-		this.budget = budget;
-	}
-
-	public double getFreeTime() {
-		return freeTime;
-	}
-
-	public void setFreeTime(double time) {
-		this.freeTime = time;
-	}
 
 	public AtractionType getPreferredAtraccion() {
 		return preferredAtraction;

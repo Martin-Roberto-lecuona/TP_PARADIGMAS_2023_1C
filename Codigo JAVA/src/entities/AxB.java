@@ -25,28 +25,25 @@ public class AxB extends Promotion{
 	public void calculateTotalWithDiscount() {	
 		double val=0;
 		for (Atraction f : free) {
-			val += f.getCost();
+			val += f.getTotalCost();
 		}
-		this.discountedTotalCost = this.totalCost - val ;
+		this.totalCost = this.totalCostWithNoDiscount - val ;
 	}
 	
 	public void calculateTotalTime() {	
 		for (Atraction f : free) {
-			this.totalTime += f.getEstimatedTime();
+			this.totalTime += f.getTotalTime();
 		}
 	}
 	public void calculateTotalCost() {			
 		for (Atraction atr : atractionList) {
-			this.totalCost += atr.getCost();
+			this.totalCostWithNoDiscount += atr.getTotalCost();
 		}
 		for (Atraction f : free) {
-			this.totalCost += f.getCost();
+			this.totalCost += f.getTotalCost();
 		}
 	}
 	
-	public ArrayList<Atraction> getFree() {
-		return free;
-	}
 	public String getFreeString() {
 		String res = "";
 		for (Atraction f : free) {
@@ -54,4 +51,7 @@ public class AxB extends Promotion{
 		}
 		return res;
 	}
+
+
+
 }

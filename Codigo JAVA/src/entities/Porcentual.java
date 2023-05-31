@@ -15,7 +15,7 @@ public class Porcentual extends Promotion {
 
 	@Override
 	public void calculateTotalWithDiscount() {
-		this.discountedTotalCost = this.totalCost - (this.totalCost * this.percent);
+		this.totalCost = this.totalCostWithNoDiscount - (this.totalCostWithNoDiscount * this.percent);
 	}
 
 }

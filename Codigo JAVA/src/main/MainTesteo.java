@@ -11,7 +11,7 @@ import entities.Purchase;
 import entities.User;
 import interfaces.UserInterface;
 
-public class Main {
+public class MainTesteo {
 
 	private static final String pathAtraction = "casos de prueba/in/atractions.in";
 	private static final String pathPromotions = "casos de prueba/in/promotions.in";

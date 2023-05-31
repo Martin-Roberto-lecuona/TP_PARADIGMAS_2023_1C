@@ -2,24 +2,19 @@ package entities;
 
 import java.util.ArrayList;
 
-import enums.AtractionType;
+public abstract class Promotion extends Offer implements Comparable<Promotion> {
 
-public abstract class Promotion implements Comparable<Promotion> {
-
-	protected double totalCost = 0;
-	protected double totalTime = 0;
-	protected double discountedTotalCost;
-	protected AtractionType promotionType;
+	protected double totalCostWithNoDiscount;
 
 	protected String[] atractionNames;
 	protected ArrayList<Atraction> atractionList = new ArrayList<Atraction>();
 
 	public Promotion(ArrayList<Atraction> a) {
 		this.atractionList.addAll(a);
-		this.setPromotionType(a.get(0).getAtractionType());
+		this.setType(a.get(0).getType());
 		for (Atraction atr : a) {
-			this.totalCost += atr.getCost();
-			this.totalTime += atr.getEstimatedTime();
+			this.totalCostWithNoDiscount += atr.getTotalCost();
+			this.totalTime += atr.getTotalTime();
 		}
 	}
 
@@ -28,7 +23,7 @@ public abstract class Promotion implements Comparable<Promotion> {
 	}
 
 	public void decreaseSlots() {
-		for (Atraction atraction : this.atractionList) {
+		for (Offer atraction : this.atractionList) {
 			atraction.decreaseSlots();
 		}
 	}
@@ -54,57 +49,62 @@ public abstract class Promotion implements Comparable<Promotion> {
 		return totalTime;
 	}
 
-	public void setTotalTime(double totalTime) {
-		this.totalTime = totalTime;
-	}
-
-	public double getDiscountedTotalCost() {
-		return discountedTotalCost;
-	}
-
-	public void setDiscountedTotalCost(double discountedTotalCost) {
-		this.discountedTotalCost = discountedTotalCost;
-	}
-
-	public String[] getAtractionNames() {
-		return atractionNames;
-	}
-
-	public void setAtractionNames(String[] atractionNames) {
-		this.atractionNames = atractionNames;
+	public double getTotalCostWithNoDiscount() {
+		return totalCostWithNoDiscount;
 	}
 
 	@Override
 	public int compareTo(Promotion p) {
 		;
-		if (Double.compare(p.discountedTotalCost, this.discountedTotalCost) == 0) {
+		if (Double.compare(p.totalCost, this.totalCost) == 0) {
 			return Double.compare(p.totalTime, this.totalTime);
 		} else {
-			return Double.compare(p.discountedTotalCost, this.discountedTotalCost);
+			return Double.compare(p.totalCost, this.totalCost);
 		}
 	}
 
 	@Override
 	public String toString() {
 		String regex = "[\\]\\[]";
-		return promotionType + "\n-Precio: $" + totalCost + ", -Duración: " + totalTime + ", -Precio con descuento: $"
-				+ discountedTotalCost + "\nIncluye:" + (this.atractionList.toString()).replaceAll(regex, "") + "\n";
+		return this.type + "\n-Precio: $" + totalCostWithNoDiscount + ", -Duración: " + totalTime
+				+ ", -Precio con descuento: $" + totalCost + "\nIncluye:"
+				+ (this.atractionList.toString()).replaceAll(regex, "") + "\n";
 	}
 
 	public abstract void calculateTotalWithDiscount();
 
-	public AtractionType getPromotionType() {
-		return promotionType;
-	}
+	public static Offer createNewSuggestion(ArrayList<Promotion> offerArrayList, int[] cont, boolean basedOnPreferred,
+			ArrayList<Atraction> alreadyTaken, User user) {
+		int i = cont[0];
+		boolean ifCanGo, preferred;
+		while (i < offerArrayList.size()) {
 
-	public void setPromotionType(AtractionType promotionType) {
-		this.promotionType = promotionType;
-	}
+			ifCanGo = user.canGo(offerArrayList.get(i))
+					&& user.canGoAlreadyTakenAtr(offerArrayList.get(i).getAtractionList(), alreadyTaken);
 
-	public void decreaseSlotsToAllAtractionsInPromo() {
-		for (Atraction atr : this.getAtractionList()) {
-			atr.decreaseSlots();
+			if (basedOnPreferred) {
+				preferred = offerArrayList.get(i).getType() == user.getPreferredAtraccion();
+			} else {
+				preferred = offerArrayList.get(i).getType() != user.getPreferredAtraccion();
+			}
+
+			if (ifCanGo && preferred) {
+				cont[0] = i;
+				return offerArrayList.get(i);
+			}
+			i++;
+
 		}
+		return null;
+	}
+
+	public String presentation() {
+		return "La Promocion que le presentamos es: " + this + "\nAcepta la Promo 'S' para si 'N' para no ";
+	}
+
+	@Override
+	public ArrayList<Atraction> getAtractions() {
+		return this.atractionList;
 	}
 
 }

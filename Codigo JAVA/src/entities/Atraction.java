@@ -1,63 +1,33 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import enums.AtractionType;
 
-public class Atraction implements Comparable<Atraction> {
+public class Atraction extends Offer implements Comparable<Atraction>  {
 
-	private double cost;
-	private double estimatedTime;
 	private int slots;
-	private AtractionType atractionType;
 	private String name;
 
 	public Atraction(String name, double cost, double estimatedTime, int maxSlots, AtractionType atractionType) {
 		this.name = name;
-		this.cost = cost;
-		this.estimatedTime = estimatedTime;
+		this.totalCost = cost;
+		this.totalTime = estimatedTime;
 		this.slots = maxSlots;
-		this.atractionType = atractionType;
+		this.type = atractionType;
 	}
 
 	public Atraction(Atraction atr) {
 		this.name = atr.getName();
-		this.cost = atr.getCost();
-		this.estimatedTime = atr.getEstimatedTime();
+		this.totalCost = atr.getTotalCost();
+		this.totalTime = atr.getTotalTime();
 		this.slots = atr.getSlots();
-		this.atractionType = atr.getAtractionType();
-	}
-
-	public double getCost() {
-		return cost;
-	}
-
-	public AtractionType getAtractionType() {
-		return atractionType;
-	}
-
-	public void setAtractionType(AtractionType atractionType) {
-		this.atractionType = atractionType;
+		this.type = atr.getType();
 	}
 
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setCost(double cost) {
-		this.cost = cost;
-	}
-
-	public double getEstimatedTime() {
-		return estimatedTime;
-	}
-
-	public void setEstimatedTime(double estimatedTime) {
-		this.estimatedTime = estimatedTime;
 	}
 
 	public int getSlots() {
@@ -72,37 +42,75 @@ public class Atraction implements Comparable<Atraction> {
 
 	@Override
 	public int compareTo(Atraction a) {
-		if (Double.compare(a.getCost(), this.cost) == 0) {
-			return Double.compare(a.getEstimatedTime(), this.estimatedTime);
+		if (Double.compare(a.getTotalCost(), this.totalCost) == 0) {
+			return Double.compare(a.getTotalTime(), this.totalTime);
 		}
-		return Double.compare(a.getCost(), this.cost);
+		return Double.compare(a.getTotalCost(), this.totalCost);
 
 	}
 
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(atractionType, cost, estimatedTime, slots, name);
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(name, slots);
+		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Atraction other = (Atraction) obj;
-		return atractionType == other.atractionType
-				&& Double.doubleToLongBits(cost) == Double.doubleToLongBits(other.cost)
-				&& Double.doubleToLongBits(estimatedTime) == Double.doubleToLongBits(other.estimatedTime)
-				&& Objects.equals(name, other.name);
+		return Objects.equals(name, other.name) && slots == other.slots;
 	}
 
 	@Override
 	public String toString() {
-		return "\nNombre:	" + name + "	-Precio:$" + cost + "	-Duración:" + estimatedTime + "hrs"
+		return "\nNombre:	" + name + "	-Precio:$" + totalCost + "	-Duración:" + totalTime + "hrs"
 				+ "	-Disponibles: " + slots;
 	}
+	
+	
+	public static Offer createNewSuggestion(ArrayList<Atraction> offerArray, int[] cont,
+			boolean basedOnPreferred, ArrayList<Atraction> alreadyTaken, User user) {
+		int i = cont[0];
+		boolean ifCanGo, preferred;
+		if (!user.canGoAlreadyTaken(offerArray, alreadyTaken)) {
+			cont[0]++;
+			return null;
+		}
+		while (i < offerArray.size()) {
+			ifCanGo = user.canGo((Atraction) offerArray.get(i));
+			if (basedOnPreferred) {
+				preferred = offerArray.get(i).getType() == user.getPreferredAtraccion();
+			} else
+				preferred = offerArray.get(i).getType() != user.getPreferredAtraccion();
 
+			if (ifCanGo && preferred) {
+				cont[0] = i;
+				return offerArray.get(i);
+			}
+			i++;
+		}
+		return null;
+	}
+	@Override
+	public String presentation() {
+		return "La Atraccion que le presentamos es: " + this + "\nAcepta la Atraccion 'S' para si 'N' para no ";
+	}
+
+	@Override
+	public ArrayList<Atraction> getAtractions() {
+		// TODO Auto-generated method stub
+		ArrayList<Atraction> res = new ArrayList<Atraction>();
+		res.add(this);
+		return res;
+	}
 }

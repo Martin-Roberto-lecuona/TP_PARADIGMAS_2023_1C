@@ -15,6 +15,6 @@ public class Absoluta extends Promotion {
 	
 	@Override
 	public void calculateTotalWithDiscount() {
-		this.discountedTotalCost = this.totalCost - this.absolute;
+		this.totalCost = this.totalCostWithNoDiscount - this.absolute;
 	}
 }
