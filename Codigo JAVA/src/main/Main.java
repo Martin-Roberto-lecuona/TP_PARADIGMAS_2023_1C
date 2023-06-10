@@ -54,6 +54,7 @@ public class Main {
 			purchaseFile.appendToFile(compra, true);
 			
 		}
+		input.close();
 
 	}
 
