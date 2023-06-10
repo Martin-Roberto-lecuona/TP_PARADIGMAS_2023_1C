@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import entities.Atraction;
 import entities.AxB;
 import entities.Offer;
+import entities.Porcentual;
 import entities.Promotion;
 import entities.User;
 import enums.AtractionType;
@@ -150,7 +151,9 @@ public class PromocionesTest {
 		freeAtractions.add(a3);
 		AxB promoAxB = new AxB(atractions,freeAtractions);
 		promotions.add(promoAxB);
-		Offer real = Atraction.createNewSuggestion(promotions, cont, true,atractions, normalUser);
+		Porcentual promoPorcen  = new Porcentual(atractions,0.5);
+		promotions.add(promoPorcen);
+		Offer real = Promotion.createNewSuggestion(promotions, cont, true,new ArrayList<Atraction>(), normalUser);
 		Assert.assertEquals(promoAxB, real);
 	}
 //
