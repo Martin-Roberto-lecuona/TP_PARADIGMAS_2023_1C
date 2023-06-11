@@ -55,16 +55,16 @@ public class TotalizadorDeItinerarioTest {
 		atractions.add(atraction8);
 
 		Porcentual promo1 = new Porcentual(new ArrayList<Atraction>(Arrays.asList(atraction1, atraction7)), 0.2);
-		
+
 		Absoluta promo2 = new Absoluta(new ArrayList<Atraction>(Arrays.asList(atraction2, atraction3)), 10);
-		
+
 		AxB promo3 = new AxB(new ArrayList<Atraction>(Arrays.asList(atraction2, atraction3)),
 				new ArrayList<Atraction>(Arrays.asList(atraction4)));
-		
+
 		Porcentual promo4 = new Porcentual(new ArrayList<Atraction>(Arrays.asList(atraction6, atraction8)), 0.15);
-		
+
 		Absoluta promo5 = new Absoluta(new ArrayList<Atraction>(Arrays.asList(atraction1, atraction3)), 6);
-		
+
 		AxB promo6 = new AxB(new ArrayList<Atraction>(Arrays.asList(atraction8, atraction6)),
 				new ArrayList<Atraction>(Arrays.asList(atraction5)));
 

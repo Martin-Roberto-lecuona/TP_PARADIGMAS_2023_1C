@@ -33,13 +33,10 @@ public class Purchase {
 		String toString = this.userPurchasing.getName();
 		toString = String.format("\t\t\t** %15s %-24s**\n", " Visitante", toString);
 		if (!offersList.isEmpty()) {
-			toString = toString + "Adquirio lo siguiente:\n" + (this.offersList.toString()).replaceAll(regex, "") 
-						+ EOL
-						+ "\t\t\t\tSU ITINERARIO FINAL SERA DE:\n"
-						+ "\t\t\t\t*COSTO TOTAL: $" + this.totalCost + EOL
-						+ "\t\t\t\t*TIEMPO TOTAL: " + this.totalTime +"hs \n";
-		}
-		else {
+			toString = toString + "Adquirio lo siguiente:\n" + (this.offersList.toString()).replaceAll(regex, "") + EOL
+					+ "\t\t\t\tSU ITINERARIO FINAL SERA DE:\n" + "\t\t\t\t*COSTO TOTAL: $" + this.totalCost + EOL
+					+ "\t\t\t\t*TIEMPO TOTAL: " + this.totalTime + "hs \n";
+		} else {
 			toString = toString + "\n \t\t\t\t No ha realizado compras.\n";
 		}
 		return toString;
@@ -60,15 +57,14 @@ public class Purchase {
 	public double getTotalTime() {
 		return totalTime;
 	}
-	
+
 	public void setTotalCost(double totalCost) {
 		this.totalCost = totalCost;
 	}
-	
+
 	public void setTotalTime(double totalTime) {
 		this.totalTime = totalTime;
 	}
-
 
 	public void setUserPurchasing(User userPurchasing) {
 		this.userPurchasing = userPurchasing;

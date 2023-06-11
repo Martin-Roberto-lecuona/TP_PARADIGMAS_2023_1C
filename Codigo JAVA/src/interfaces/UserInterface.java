@@ -20,7 +20,7 @@ public abstract class UserInterface {
 
 		int[] cont = { 0 };
 		Offer off = Atraction.createNewSuggestion(offerArray, cont, basedOnPreferred, compra.getAllAtractions(), user);
-		
+
 		while (off != null) {
 			userInputHandler(input, user, compra, off);
 			cont[0]++;

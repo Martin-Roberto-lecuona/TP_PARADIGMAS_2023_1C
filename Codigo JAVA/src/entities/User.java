@@ -10,7 +10,8 @@ public class User {
 	private double budget;
 	private double freeTime;
 	private AtractionType preferredAtraction;
-	// private LinkedList<Atraction> alreadyTakenAtractions = new LinkedList<Atraction>();
+	// private LinkedList<Atraction> alreadyTakenAtractions = new
+	// LinkedList<Atraction>();
 
 	public User(String name, double budget, double freeTime2, AtractionType preferredAtraction) {
 		this.name = name;
@@ -19,13 +20,10 @@ public class User {
 		this.preferredAtraction = preferredAtraction;
 	}
 
-	
-
 	public boolean alreadyTaken(Atraction atr, ArrayList<Atraction> alreadyTaken) {
 		return alreadyTaken.contains(atr);
 	}
-	
-	
+
 	// no invertir las condiciones sino explota
 	public boolean alreadyTakenAtrList(ArrayList<Atraction> atractionList, ArrayList<Atraction> alreadyTaken) {
 		for (Atraction atr : atractionList) {
@@ -81,7 +79,6 @@ public class User {
 	public String getName() {
 		return this.name;
 	}
-
 
 	public AtractionType getPreferredAtraccion() {
 		return preferredAtraction;

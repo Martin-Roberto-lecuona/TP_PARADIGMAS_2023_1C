@@ -102,7 +102,6 @@ public class FileParser {
 				String line = reader.nextLine();
 				String[] parsedValues = line.split(";");
 				String[] atractionsInFIle = parsedValues[1].split(",");
-				
 
 				atractionsWithPromotion = findAtractionByName(atractionList, atractionsInFIle);
 
@@ -147,7 +146,6 @@ public class FileParser {
 		return res;
 	}
 
-
 	public void appendToFile(Object data, boolean append) {
 		FileWriter writer = null;
 		try {
@@ -171,5 +169,4 @@ public class FileParser {
 		return extension.equals(name.substring(name.lastIndexOf(".")));
 	}
 
-	
 }

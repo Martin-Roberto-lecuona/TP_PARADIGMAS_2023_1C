@@ -5,15 +5,12 @@ import java.util.Objects;
 
 import enums.AtractionType;
 
-public abstract class Offer{
-	
+public abstract class Offer {
+
 	protected double totalCost;
 	protected double totalTime;
 	protected AtractionType type;
-	
-	
-	
-	
+
 	public double getTotalCost() {
 		return totalCost;
 	}
@@ -25,12 +22,13 @@ public abstract class Offer{
 	public AtractionType getType() {
 		return type;
 	}
+
 	public void setType(AtractionType type) {
 		this.type = type;
 	}
-	
+
 	public abstract void decreaseSlots();
-	
+
 	public abstract String presentation();
 
 	@Override
@@ -52,5 +50,5 @@ public abstract class Offer{
 	}
 
 	public abstract ArrayList<Atraction> getAtractions();
-	
+
 }

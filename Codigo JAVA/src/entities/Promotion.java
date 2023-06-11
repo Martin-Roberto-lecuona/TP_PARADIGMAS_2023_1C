@@ -66,9 +66,8 @@ public abstract class Promotion extends Offer implements Comparable<Promotion> {
 	@Override
 	public String toString() {
 		String regex = "[\\]\\[]";
-		return "["+ this.type + "]\nAtracciones incluidas:" + (this.atractionList.toString()).replaceAll(regex, "") 
-				+ "\n\n-Duración total: " + totalTime + "hs"
-				+ "\n-Precio original: $" + totalCostWithNoDiscount 
+		return "[" + this.type + "]\nAtracciones incluidas:" + (this.atractionList.toString()).replaceAll(regex, "")
+				+ "\n\n-Duración total: " + totalTime + "hs" + "\n-Precio original: $" + totalCostWithNoDiscount
 				+ "\n-Precio con descuento: $" + totalCost + "\n";
 	}
 
@@ -100,7 +99,8 @@ public abstract class Promotion extends Offer implements Comparable<Promotion> {
 	}
 
 	public String presentation() {
-		return "La PROMOCIÓN que le presentamos es: " + this + "\n¿Acepta la Promoción? Ingrese 'S' para aceptar, 'N' para rechazar:";
+		return "La PROMOCIÓN que le presentamos es: " + this
+				+ "\n¿Acepta la Promoción? Ingrese 'S' para aceptar, 'N' para rechazar:";
 	}
 
 	@Override

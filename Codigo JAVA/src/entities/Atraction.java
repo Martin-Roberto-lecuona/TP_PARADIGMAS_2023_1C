@@ -43,8 +43,8 @@ public class Atraction extends Offer implements Comparable<Atraction> {
 
 	@Override
 	public int compareTo(Atraction a) {
-		if (Double.compare(a.getTotalCost(), this.totalCost) == 0) {
-			return Double.compare(a.getTotalTime(), this.totalTime);
+		if (Double.compare(this.totalCost, a.getTotalCost()) == 0) {
+			return Double.compare(this.totalTime, a.getTotalTime());
 		}
 		return Double.compare(a.getTotalCost(), this.totalCost);
 
@@ -91,14 +91,14 @@ public class Atraction extends Offer implements Comparable<Atraction> {
 
 				show = offerArray.get(cont[0]).getType() != user.getPreferredAtraccion();
 			}
-			
+
 			boolean falopa = !user.alreadyTaken(offerArray.get(cont[0]), alreadyTaken);
 
 			if (user.canGo((Atraction) offerArray.get(cont[0])) && falopa && show) {
 				cont[0]++;
-				return offerArray.get(cont[0]-1);
+				return offerArray.get(cont[0] - 1);
 			}
-			
+
 			cont[0]++;
 
 		}
