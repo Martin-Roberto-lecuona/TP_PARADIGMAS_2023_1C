@@ -13,7 +13,6 @@ import entities.Promotion;
 import entities.User;
 import enums.AtractionType;
 
-
 public class PromocionesTest {
 
 	@Test
@@ -29,7 +28,7 @@ public class PromocionesTest {
 		atractions.add(a1);
 		atractions.add(a2);
 		freeAtractions.add(a3);
-		AxB promoAxB = new AxB(atractions,freeAtractions);
+		AxB promoAxB = new AxB(atractions, freeAtractions);
 		promotions.add(promoAxB);
 		Offer real = Promotion.createNewSuggestion(promotions, cont, true, new ArrayList<Atraction>(), u);
 		Assert.assertEquals(null, real);
@@ -46,15 +45,13 @@ public class PromocionesTest {
 		Atraction a2 = new Atraction("Montana", 50, 50, 2, AtractionType.AVENTURA);
 		Atraction a3 = new Atraction("Cine", 10, 10, 3, AtractionType.DEGUSTACION);
 		atractions.add(a1);
-		atractions.add(a2); 
+		atractions.add(a2);
 		freeAtractions.add(a3);
-		AxB promoAxB = new AxB(atractions,freeAtractions);
+		AxB promoAxB = new AxB(atractions, freeAtractions);
 		promotions.add(promoAxB);
 		Offer real = Atraction.createNewSuggestion(atractions, cont, true, new ArrayList<Atraction>(), withoutTime);
 		Assert.assertEquals(null, real);
 	}
-	
-	
 
 	@Test
 	void Promotion_enoughMoney() {
@@ -72,27 +69,27 @@ public class PromocionesTest {
 		Atraction a4 = new Atraction("Lago", 50, 5, 3, AtractionType.AVENTURA);
 		Atraction a5 = new Atraction("Laguna", 50, 50, 2, AtractionType.PAISAJE);
 		Atraction a6 = new Atraction("Laguito", 10, 10, 3, AtractionType.DEGUSTACION);
-		
+
 		atraction1.add(a1);
 		atraction1.add(a2);
-		
+
 		atraction2.add(a4);
 		atraction2.add(a5);
-		
+
 		freeAtraction1.add(a3);
 		freeAtraction2.add(a6);
-		
-		AxB promoAxB1 = new AxB(atraction1,freeAtraction1);
-		AxB promoAxB2 = new AxB(atraction2,freeAtraction2);
-		
+
+		AxB promoAxB1 = new AxB(atraction1, freeAtraction1);
+		AxB promoAxB2 = new AxB(atraction2, freeAtraction2);
+
 		promotions.add(promoAxB1);
 		promotions.add(promoAxB2);
 
 		enoughMoney.appoint(promoAxB1);
-		//decrese slots
-		
+		// decrese slots
+
 		bought1.add(promoAxB1);
-		
+
 		Offer real = Promotion.createNewSuggestion(promotions, cont, true, freeAtraction2, enoughMoney);
 		Assert.assertEquals(null, real);
 	}
@@ -106,15 +103,15 @@ public class PromocionesTest {
 		Atraction a1 = new Atraction("Parque", 50, 50, 3, AtractionType.AVENTURA);
 		Atraction a2 = new Atraction("Montana", 50, 50, 2, AtractionType.AVENTURA);
 		Atraction a3 = new Atraction("Cine", 10, 10, 3, AtractionType.DEGUSTACION);
-		
+
 		atractions.add(a1);
 		atractions.add(a2);
 		freeAtractions.add(a3);
-		
-		AxB promoAxB = new AxB(atractions,freeAtractions);
+
+		AxB promoAxB = new AxB(atractions, freeAtractions);
 		enoughTime.appoint(promoAxB);
-		
-		Offer real = Atraction.createNewSuggestion(atractions, cont, true,atractions, enoughTime);
+
+		Offer real = Atraction.createNewSuggestion(atractions, cont, true, atractions, enoughTime);
 		Assert.assertEquals(null, real);
 	}
 
@@ -127,12 +124,12 @@ public class PromocionesTest {
 		Atraction a1 = new Atraction("Parque", 50, 50, 3, AtractionType.AVENTURA);
 		Atraction a2 = new Atraction("Montana", 50, 50, 2, AtractionType.AVENTURA);
 		Atraction a3 = new Atraction("Cine", 10, 10, 3, AtractionType.DEGUSTACION);
-		
+
 		atractions.add(a1);
 		atractions.add(a2);
 		freeAtractions.add(a3);
-		
-		Offer real = Atraction.createNewSuggestion(atractions, cont, true,atractions, notFoundPreference);
+
+		Offer real = Atraction.createNewSuggestion(atractions, cont, true, atractions, notFoundPreference);
 		Assert.assertEquals(null, real);
 	}
 
@@ -149,47 +146,11 @@ public class PromocionesTest {
 		atractions.add(a1);
 		atractions.add(a2);
 		freeAtractions.add(a3);
-		AxB promoAxB = new AxB(atractions,freeAtractions);
+		AxB promoAxB = new AxB(atractions, freeAtractions);
 		promotions.add(promoAxB);
-		Porcentual promoPorcen  = new Porcentual(atractions,0.5);
+		Porcentual promoPorcen = new Porcentual(atractions, 0.5);
 		promotions.add(promoPorcen);
-		Offer real = Promotion.createNewSuggestion(promotions, cont, true,new ArrayList<Atraction>(), normalUser);
+		Offer real = Promotion.createNewSuggestion(promotions, cont, true, new ArrayList<Atraction>(), normalUser);
 		Assert.assertEquals(promoAxB, real);
 	}
-//
-//	@Test
-//	void Promotion_decraseSlots() {
-//		int[] cont = { 1 };
-//		User u1 = new User("Juan", 1000, 2000, AtractionType.DEGUSTACION);
-//		ArrayList<Atraction> atractions = new ArrayList<Atraction>();
-//		ArrayList<Atraction> compradas = new ArrayList<Atraction>();
-//		Atraction a1 = new Atraction("Parque", 50, 50, 1, AtractionType.DEGUSTACION);
-//		Atraction a2 = new Atraction("Montana", 50, 50, 2, AtractionType.DEGUSTACION);
-//		atractions.add(a1);
-//		atractions.add(a2);
-//		u1.appoint(a1);
-//		a1.decreaseSlots();
-//		compradas.add(a1);
-//		Offer real = Atraction.createNewSuggestion(atractions, cont, true, compradas, u1);
-//		Assert.assertEquals(null, real);
-//	}
-//	
-//	@Test
-//	void Promotion_sameAtraction() {
-//		int[] cont = { 1 };
-//		User u1 = new User("Juan", 1000, 2000, AtractionType.DEGUSTACION);
-//		ArrayList<Atraction> atractions = new ArrayList<Atraction>();
-//		ArrayList<Atraction> compradas = new ArrayList<Atraction>();
-//		Atraction a1 = new Atraction("Montana", 50, 50, 2, AtractionType.DEGUSTACION);
-//		Atraction a2 = new Atraction("Montana", 50, 50, 40, AtractionType.DEGUSTACION);
-//		atractions.add(a1);
-//		atractions.add(a2);
-//		u1.appoint(a1);
-//		a1.decreaseSlots();
-//		compradas.add(a1);
-//		Offer real = Atraction.createNewSuggestion(atractions, cont, true, compradas, u1);
-//		Assert.assertEquals(null, real);
-//	}
-	
-
 }

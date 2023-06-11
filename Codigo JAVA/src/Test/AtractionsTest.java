@@ -10,7 +10,6 @@ import entities.Offer;
 import entities.User;
 import enums.AtractionType;
 
-
 class AtractionsTest {
 
 	@Test
@@ -112,7 +111,7 @@ class AtractionsTest {
 		Offer real = Atraction.createNewSuggestion(atractions, cont, true, compradas, u1);
 		Assert.assertEquals(null, real);
 	}
-	
+
 	@Test
 	void atraction_sameAtraction() {
 		int[] cont = { 1 };
@@ -131,6 +130,3 @@ class AtractionsTest {
 	}
 
 }
-
-
-
