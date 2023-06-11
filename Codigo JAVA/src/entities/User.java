@@ -21,10 +21,11 @@ public class User {
 	}
 
 	public boolean alreadyTaken(Atraction atr, ArrayList<Atraction> alreadyTaken) {
+
 		return alreadyTaken.contains(atr);
+
 	}
 
-	// no invertir las condiciones sino explota
 	public boolean alreadyTakenAtrList(ArrayList<Atraction> atractionList, ArrayList<Atraction> alreadyTaken) {
 		for (Atraction atr : atractionList) {
 			if (alreadyTaken.contains(atr)) {

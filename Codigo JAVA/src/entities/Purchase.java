@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Purchase {
 	private static final String EOL = "\n";
-	private static final String TAB = "\t";
+	//private static final String TAB = "\t";
 	private ArrayList<Offer> offersList = new ArrayList<Offer>();
 
 	private double totalCost = 0;

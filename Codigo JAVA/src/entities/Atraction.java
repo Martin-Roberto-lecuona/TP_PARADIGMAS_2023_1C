@@ -80,7 +80,7 @@ public class Atraction extends Offer implements Comparable<Atraction> {
 	}
 
 	public static Offer createNewSuggestion(ArrayList<Atraction> offerArray, int[] cont, boolean basedOnPreferred,
-			ArrayList<Atraction> alreadyTaken, User user) {
+			ArrayList<Atraction> alreadyTakenArray, User user) {
 		boolean show;
 
 		while (cont[0] < offerArray.size()) {
@@ -92,9 +92,9 @@ public class Atraction extends Offer implements Comparable<Atraction> {
 				show = offerArray.get(cont[0]).getType() != user.getPreferredAtraccion();
 			}
 
-			boolean falopa = !user.alreadyTaken(offerArray.get(cont[0]), alreadyTaken);
+			boolean alreadyTakenBoolean = !user.alreadyTaken(offerArray.get(cont[0]), alreadyTakenArray);
 
-			if (user.canGo((Atraction) offerArray.get(cont[0])) && falopa && show) {
+			if (user.canGo((Atraction) offerArray.get(cont[0])) && alreadyTakenBoolean && show) {
 				cont[0]++;
 				return offerArray.get(cont[0] - 1);
 			}
