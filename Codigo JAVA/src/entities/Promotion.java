@@ -18,10 +18,6 @@ public abstract class Promotion extends Offer implements Comparable<Promotion> {
 		}
 	}
 
-	public ArrayList<Atraction> getAtractionList() {
-		return this.atractionList;
-	}
-
 	public void decreaseSlots() {
 		for (Offer atraction : this.atractionList) {
 			atraction.decreaseSlots();
@@ -79,7 +75,7 @@ public abstract class Promotion extends Offer implements Comparable<Promotion> {
 		while (i < offerArrayList.size()) {
 
 			ifCanGo = user.canGo(offerArrayList.get(i))
-					&& user.alreadyTakenAtrList(offerArrayList.get(i).getAtractionList(), alreadyTaken);
+					&& user.alreadyTakenAtrList(offerArrayList.get(i).getAtractions(), alreadyTaken);
 
 			if (basedOnPreferred) {
 				preferred = offerArrayList.get(i).getType() == user.getPreferredAtraccion();

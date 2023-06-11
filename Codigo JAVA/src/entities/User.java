@@ -53,8 +53,8 @@ public class User {
 
 		boolean flagCanGoAtraction = true;
 
-		for (int i = 0; i < promo.getAtractionList().size() && flagCanGoAtraction; i++) {
-			flagCanGoAtraction = promo.getAtractionList().get(i).getSlots() > 0;
+		for (int i = 0; i < promo.getAtractions().size() && flagCanGoAtraction; i++) {
+			flagCanGoAtraction = promo.getAtractions().get(i).getSlots() > 0;
 		}
 
 		return flagCanGoAtraction;
@@ -66,7 +66,7 @@ public class User {
 	}
 
 	public void appoint(Promotion promo) {
-		for (Atraction atrac : promo.getAtractionList()) {
+		for (Atraction atrac : promo.getAtractions()) {
 			appoint(atrac);
 		}
 	}
