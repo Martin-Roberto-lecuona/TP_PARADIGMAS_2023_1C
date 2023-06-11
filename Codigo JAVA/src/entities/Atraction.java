@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 import enums.AtractionType;
@@ -49,8 +50,6 @@ public class Atraction extends Offer implements Comparable<Atraction>  {
 
 	}
 
-	
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -73,8 +72,8 @@ public class Atraction extends Offer implements Comparable<Atraction>  {
 
 	@Override
 	public String toString() {
-		return "\nNombre:	" + name + "	-Precio:$" + totalCost + "	-Duración:" + totalTime + "hrs"
-				+ "	-Disponibles: " + slots;
+		return String.format(Locale.ENGLISH, "\n-Nombre: %-20s \t-Precio:$%-7.2f \t-Duración:%4.2fhrs \t-Disponibles: %-3d", name, totalCost, totalTime, slots);
+		//return "\n-Nombre:	" + name + "\t-Precio:$" + totalCost + "\t-Duración:" + totalTime + "hrs" + "\t-Disponibles: " + slots;
 	}
 	
 	
@@ -103,7 +102,7 @@ public class Atraction extends Offer implements Comparable<Atraction>  {
 	}
 	@Override
 	public String presentation() {
-		return "La Atraccion que le presentamos es: " + this + "\nAcepta la Atraccion 'S' para si 'N' para no ";
+		return "La ATRACCIÓN que le presentamos es: " + this + "\n\n¿Acepta la Atracción? Ingrese 'S' para aceptar, 'N' para rechazar:";
 	}
 
 	@Override

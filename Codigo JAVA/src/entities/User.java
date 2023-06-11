@@ -10,8 +10,7 @@ public class User {
 	private double budget;
 	private double freeTime;
 	private AtractionType preferredAtraction;
-	// private LinkedList<Atraction> alreadyTakenAtractions = new
-	// LinkedList<Atraction>();
+	// private LinkedList<Atraction> alreadyTakenAtractions = new LinkedList<Atraction>();
 
 	public User(String name, double budget, double freeTime2, AtractionType preferredAtraction) {
 		this.name = name;
@@ -78,7 +77,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "nombre=" + name + ", Presupuesto=" + budget + ", Tiempo Libre=" + freeTime + ", Atraccion preferida="
+		return "Nombre=" + name + ", Presupuesto=" + budget + ", Tiempo Libre=" + freeTime + ", Atraccion preferida="
 				+ preferredAtraction;
 	}
 

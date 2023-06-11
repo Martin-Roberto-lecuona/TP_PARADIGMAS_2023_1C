@@ -17,7 +17,7 @@ public class AxB extends Promotion{
 	
 	@Override
 	public String toString() {
-		return super.toString() + "Y ademas totalmente GRATIS: " + getFreeString() ;
+		return super.toString() + "Y ademas totalmente GRATIS: " + getFreeString() + "\n" ;
 	}
 
 	@Override
@@ -51,6 +51,18 @@ public class AxB extends Promotion{
 		return res;
 	}
 
+	@Override
+	public void decreaseSlots() {
+		super.decreaseSlots();
+		/*if (this.slots != 0) {
+			this.slots--;
+		}*/
+		if(!free.isEmpty()) {
+			for (Atraction atraction : this.free) {
+				atraction.decreaseSlots();
+			}
+		}
+	}
 
 
 }
