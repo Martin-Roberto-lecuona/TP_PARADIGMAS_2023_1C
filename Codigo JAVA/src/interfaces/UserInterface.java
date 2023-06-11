@@ -11,6 +11,8 @@ import entities.Purchase;
 import entities.User;
 
 public abstract class UserInterface {
+	
+	// int[] cont = { 0 };  para poder pasar por referecia tiene que ser un array
 	private static final String SEPARATOR = "- -- - -- - -- - -- - -- - -- - -- - -- - -- -- -- - -- - -- - -- - -- - -- - -- - -- - -- - --";
 	private static final String accepts = "S";
 	private static final String notAccepts = "N";
@@ -31,7 +33,7 @@ public abstract class UserInterface {
 
 	public static void askUserPromotion(ArrayList<Promotion> offerArray, Scanner input, User user, Purchase compra,
 			boolean basedOnPreferred) {
-		int[] cont = { 0 }; // para poder pasar por referecia tiene que ser un array
+		int[] cont = { 0 };
 		Offer off = Promotion.createNewSuggestion(offerArray, cont, basedOnPreferred, compra.getAllAtractions(), user);
 		while (off != null) {
 			userInputHandler(input, user, compra, off);

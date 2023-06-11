@@ -163,7 +163,6 @@ public class FileParser {
 			}
 		}
 	}
-
 	public static Boolean extensionValida(String name) {
 		String extension = ".txt";
 		return extension.equals(name.substring(name.lastIndexOf(".")));

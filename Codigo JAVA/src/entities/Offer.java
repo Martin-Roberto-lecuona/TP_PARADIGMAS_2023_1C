@@ -7,8 +7,8 @@ import enums.AtractionType;
 
 public abstract class Offer {
 
-	protected double totalCost;
-	protected double totalTime;
+	protected double totalCost = 0;
+	protected double totalTime = 0;
 	protected AtractionType type;
 
 	public double getTotalCost() {

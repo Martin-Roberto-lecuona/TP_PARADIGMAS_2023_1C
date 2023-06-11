@@ -50,7 +50,6 @@ public class Main {
 
 			UserInterface.askUserAtraction(atractionArray, input, user, compra, false);
 
-			// System.out.println("*CHECK* USUARIO "+ user);
 			UserInterface.showTicketPurchase(purchaseFile, compra);
 		}
 		input.close();
