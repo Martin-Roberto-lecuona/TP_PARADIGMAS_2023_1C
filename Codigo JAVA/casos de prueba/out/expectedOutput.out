@@ -3,102 +3,78 @@ Compras del dia: 2023-06-11
 Adquirio lo siguiente:
 AVENTURA
 Atracciones incluidas:
--Nombre: Dragonstone          	-Precio:$12.00   	-Duración:4.00hrs 	-Disponibles: 21 
-
--Duración total: 4.0hs
--Precio original: $12.0
--Precio con descuento: $6.0
-, DEGUSTACION
-Atracciones incluidas:
--Nombre: Highgarden           	-Precio:$50.00   	-Duración:2.50hrs 	-Disponibles: 17 , 
+-Nombre: Dragonstone          	-Precio:$12.00   	-Duración:4.00hrs 	-Disponibles: 21 , 
 -Nombre: King's Landing       	-Precio:$75.00   	-Duración:3.00hrs 	-Disponibles: 6  
 
 -Duración total: 7.0hs
--Precio original: $250.0
--Precio con descuento: $225.0
-Y ademas totalmente GRATIS: 
--Nombre: Lannisport           	-Precio:$25.00   	-Duración:1.50hrs 	-Disponibles: 1  
-
+-Precio original: $87.0
+-Precio con descuento: $81.0
+, 
+-Nombre: The Iron Islands     	-Precio:$10.00   	-Duración:5.00hrs 	-Disponibles: 9  
 				SU ITINERARIO FINAL SERA DE:
-				*COSTO TOTAL: $231.0
-				*TIEMPO TOTAL: 11.0hs 
+				*COSTO TOTAL: $91.0
+				*TIEMPO TOTAL: 12.0hs 
 
 			**       Visitante Tyrion Lannister        **
 Adquirio lo siguiente:
 PAISAJE
 Atracciones incluidas:
--Nombre: The Vale of Arryn    	-Precio:$18.00   	-Duración:3.00hrs 	-Disponibles: 106, 
--Nombre: Winterfell           	-Precio:$10.50   	-Duración:4.50hrs 	-Disponibles: 96 
+-Nombre: Winterfell           	-Precio:$10.50   	-Duración:4.50hrs 	-Disponibles: 96 , 
+-Nombre: The Vale of Arryn    	-Precio:$18.00   	-Duración:3.00hrs 	-Disponibles: 106
 
 -Duración total: 7.5hs
--Precio original: $28.5
--Precio con descuento: $24.225
-, AVENTURA
-Atracciones incluidas:
--Nombre: Dragonstone          	-Precio:$12.00   	-Duración:4.00hrs 	-Disponibles: 20 
-
--Duración total: 4.0hs
--Precio original: $12.0
--Precio con descuento: $6.0
-
+-Precio original: $57.0
+-Precio con descuento: $57.0
+Y ademas totalmente GRATIS: 
+, 
+-Nombre: King's Landing       	-Precio:$75.00   	-Duración:3.00hrs 	-Disponibles: 5  
 				SU ITINERARIO FINAL SERA DE:
-				*COSTO TOTAL: $30.225
-				*TIEMPO TOTAL: 11.5hs 
+				*COSTO TOTAL: $132.0
+				*TIEMPO TOTAL: 10.5hs 
 
 			**       Visitante Daenerys Targaryen      **
 Adquirio lo siguiente:
 AVENTURA
 Atracciones incluidas:
--Nombre: Dragonstone          	-Precio:$12.00   	-Duración:4.00hrs 	-Disponibles: 19 
+-Nombre: Dragonstone          	-Precio:$12.00   	-Duración:4.00hrs 	-Disponibles: 20 , 
+-Nombre: King's Landing       	-Precio:$75.00   	-Duración:3.00hrs 	-Disponibles: 4  
 
--Duración total: 4.0hs
--Precio original: $12.0
--Precio con descuento: $6.0
+-Duración total: 7.0hs
+-Precio original: $87.0
+-Precio con descuento: $81.0
 
 				SU ITINERARIO FINAL SERA DE:
-				*COSTO TOTAL: $6.0
-				*TIEMPO TOTAL: 4.0hs 
+				*COSTO TOTAL: $81.0
+				*TIEMPO TOTAL: 7.0hs 
 
 			**       Visitante Jon Snow                **
 Adquirio lo siguiente:
-AVENTURA
-Atracciones incluidas:
--Nombre: Dragonstone          	-Precio:$12.00   	-Duración:4.00hrs 	-Disponibles: 18 
 
--Duración total: 4.0hs
--Precio original: $12.0
--Precio con descuento: $6.0
-
+-Nombre: Dragonstone          	-Precio:$12.00   	-Duración:4.00hrs 	-Disponibles: 19 
 				SU ITINERARIO FINAL SERA DE:
-				*COSTO TOTAL: $6.0
+				*COSTO TOTAL: $12.0
 				*TIEMPO TOTAL: 4.0hs 
 
 			**       Visitante Arya Stark              **
 Adquirio lo siguiente:
 AVENTURA
 Atracciones incluidas:
--Nombre: Dragonstone          	-Precio:$12.00   	-Duración:4.00hrs 	-Disponibles: 17 
+-Nombre: Dragonstone          	-Precio:$12.00   	-Duración:4.00hrs 	-Disponibles: 18 , 
+-Nombre: King's Landing       	-Precio:$75.00   	-Duración:3.00hrs 	-Disponibles: 3  
 
--Duración total: 4.0hs
--Precio original: $12.0
--Precio con descuento: $6.0
-, DEGUSTACION
-Atracciones incluidas:
--Nombre: Highgarden           	-Precio:$50.00   	-Duración:2.50hrs 	-Disponibles: 16 , 
--Nombre: King's Landing       	-Precio:$75.00   	-Duración:3.00hrs 	-Disponibles: 5  
-
--Duración total: 5.5hs
--Precio original: $125.0
--Precio con descuento: $115.0
-
+-Duración total: 7.0hs
+-Precio original: $87.0
+-Precio con descuento: $81.0
+, 
+-Nombre: The Iron Islands     	-Precio:$10.00   	-Duración:5.00hrs 	-Disponibles: 8  
 				SU ITINERARIO FINAL SERA DE:
-				*COSTO TOTAL: $121.0
-				*TIEMPO TOTAL: 9.5hs 
+				*COSTO TOTAL: $91.0
+				*TIEMPO TOTAL: 12.0hs 
 
 			**       Visitante Varys                   **
 Adquirio lo siguiente:
 
--Nombre: King's Landing       	-Precio:$75.00   	-Duración:3.00hrs 	-Disponibles: 4  
+-Nombre: King's Landing       	-Precio:$75.00   	-Duración:3.00hrs 	-Disponibles: 2  
 				SU ITINERARIO FINAL SERA DE:
 				*COSTO TOTAL: $75.0
 				*TIEMPO TOTAL: 3.0hs 

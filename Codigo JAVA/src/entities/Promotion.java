@@ -55,7 +55,6 @@ public abstract class Promotion extends Offer implements Comparable<Promotion> {
 
 	@Override
 	public int compareTo(Promotion p) {
-		;
 		if (Double.compare(p.totalCost, this.totalCost) == 0) {
 			return Double.compare(p.totalTime, this.totalTime);
 		} else {
