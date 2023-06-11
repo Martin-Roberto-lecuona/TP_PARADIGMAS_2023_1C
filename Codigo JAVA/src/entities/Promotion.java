@@ -81,7 +81,7 @@ public abstract class Promotion extends Offer implements Comparable<Promotion> {
 		while (i < offerArrayList.size()) {
 
 			ifCanGo = user.canGo(offerArrayList.get(i))
-					&& user.canGoAlreadyTakenAtr(offerArrayList.get(i).getAtractionList(), alreadyTaken);
+					&& user.alreadyTakenAtrList(offerArrayList.get(i).getAtractionList(), alreadyTaken);
 
 			if (basedOnPreferred) {
 				preferred = offerArrayList.get(i).getType() == user.getPreferredAtraccion();

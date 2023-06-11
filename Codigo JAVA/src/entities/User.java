@@ -21,16 +21,13 @@ public class User {
 
 	
 
-	public boolean canGoAlreadyTaken(ArrayList<Atraction> offerArray, ArrayList<Atraction> alreadyTaken) {
-		for (Atraction atr : offerArray) {
-			if (alreadyTaken.contains(atr)) {
-				return false;
-			}
-		}
-		return true;
+	public boolean alreadyTaken(Atraction atr, ArrayList<Atraction> alreadyTaken) {
+		return alreadyTaken.contains(atr);
 	}
 	
-	public boolean canGoAlreadyTakenAtr(ArrayList<Atraction> atractionList, ArrayList<Atraction> alreadyTaken) {
+	
+	// no invertir las condiciones sino explota
+	public boolean alreadyTakenAtrList(ArrayList<Atraction> atractionList, ArrayList<Atraction> alreadyTaken) {
 		for (Atraction atr : atractionList) {
 			if (alreadyTaken.contains(atr)) {
 				return false;

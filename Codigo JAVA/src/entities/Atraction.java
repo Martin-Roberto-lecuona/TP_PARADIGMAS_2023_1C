@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import enums.AtractionType;
 
-public class Atraction extends Offer implements Comparable<Atraction>  {
+public class Atraction extends Offer implements Comparable<Atraction> {
 
 	private int slots;
 	private String name;
@@ -72,37 +72,43 @@ public class Atraction extends Offer implements Comparable<Atraction>  {
 
 	@Override
 	public String toString() {
-		return String.format(Locale.ENGLISH, "\n-Nombre: %-20s \t-Precio:$%-7.2f \t-Duración:%4.2fhrs \t-Disponibles: %-3d", name, totalCost, totalTime, slots);
-		//return "\n-Nombre:	" + name + "\t-Precio:$" + totalCost + "\t-Duración:" + totalTime + "hrs" + "\t-Disponibles: " + slots;
+		return String.format(Locale.ENGLISH,
+				"\n-Nombre: %-20s \t-Precio:$%-7.2f \t-Duración:%4.2fhrs \t-Disponibles: %-3d", name, totalCost,
+				totalTime, slots);
+		// return "\n-Nombre: " + name + "\t-Precio:$" + totalCost + "\t-Duración:" +
+		// totalTime + "hrs" + "\t-Disponibles: " + slots;
 	}
-	
-	
-	public static Offer createNewSuggestion(ArrayList<Atraction> offerArray, int[] cont,
-			boolean basedOnPreferred, ArrayList<Atraction> alreadyTaken, User user) {
-		int i = cont[0];
-		boolean ifCanGo, preferred;
-		if (!user.canGoAlreadyTaken(offerArray, alreadyTaken)) {
-			cont[0]++;
-			return null;
-		}
-		while (i < offerArray.size()) {
-			ifCanGo = user.canGo((Atraction) offerArray.get(i));
-			if (basedOnPreferred) {
-				preferred = offerArray.get(i).getType() == user.getPreferredAtraccion();
-			} else
-				preferred = offerArray.get(i).getType() != user.getPreferredAtraccion();
 
-			if (ifCanGo && preferred) {
-				cont[0] = i;
-				return offerArray.get(i);
+	public static Offer createNewSuggestion(ArrayList<Atraction> offerArray, int[] cont, boolean basedOnPreferred,
+			ArrayList<Atraction> alreadyTaken, User user) {
+		boolean show;
+
+		while (cont[0] < offerArray.size()) {
+
+			if (basedOnPreferred) {
+				show = offerArray.get(cont[0]).getType() == user.getPreferredAtraccion();
+			} else {
+
+				show = offerArray.get(cont[0]).getType() != user.getPreferredAtraccion();
 			}
-			i++;
+			
+			boolean falopa = !user.alreadyTaken(offerArray.get(cont[0]), alreadyTaken);
+
+			if (user.canGo((Atraction) offerArray.get(cont[0])) && falopa && show) {
+				cont[0]++;
+				return offerArray.get(cont[0]-1);
+			}
+			
+			cont[0]++;
+
 		}
 		return null;
 	}
+
 	@Override
 	public String presentation() {
-		return "La ATRACCIÓN que le presentamos es: " + this + "\n\n¿Acepta la Atracción? Ingrese 'S' para aceptar, 'N' para rechazar:";
+		return "La ATRACCIÓN que le presentamos es: " + this
+				+ "\n\n¿Acepta la Atracción? Ingrese 'S' para aceptar, 'N' para rechazar:";
 	}
 
 	@Override

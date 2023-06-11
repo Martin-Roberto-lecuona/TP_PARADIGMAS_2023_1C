@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 import enums.AtractionType;
 import enums.PromotionType;
-import junit.framework.Assert;
 
 public class FileParser {
 
