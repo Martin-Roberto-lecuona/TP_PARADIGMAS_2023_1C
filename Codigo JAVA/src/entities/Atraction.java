@@ -75,8 +75,6 @@ public class Atraction extends Offer implements Comparable<Atraction> {
 		return String.format(Locale.ENGLISH,
 				"\n-Nombre: %-20s \t-Precio:$%-7.2f \t-Duración:%4.2fhrs \t-Disponibles: %-3d", name, totalCost,
 				totalTime, slots);
-		// return "\n-Nombre: " + name + "\t-Precio:$" + totalCost + "\t-Duración:" +
-		// totalTime + "hrs" + "\t-Disponibles: " + slots;
 	}
 
 	public static Offer createNewSuggestion(ArrayList<Atraction> offerArray, int[] cont, boolean basedOnPreferred,
@@ -113,7 +111,6 @@ public class Atraction extends Offer implements Comparable<Atraction> {
 
 	@Override
 	public ArrayList<Atraction> getAtractions() {
-		// TODO Auto-generated method stub
 		ArrayList<Atraction> res = new ArrayList<Atraction>();
 		res.add(this);
 		return res;

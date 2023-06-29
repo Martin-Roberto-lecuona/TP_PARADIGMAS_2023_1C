@@ -86,7 +86,6 @@ public class PromocionesTest {
 		promotions.add(promoAxB2);
 
 		enoughMoney.appoint(promoAxB1);
-		// decrese slots
 
 		bought1.add(promoAxB1);
 

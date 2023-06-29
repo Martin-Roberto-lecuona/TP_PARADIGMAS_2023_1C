@@ -10,9 +10,10 @@ import entities.Promotion;
 import entities.Purchase;
 import entities.User;
 
+// Las veces que esta int[] cont = { 0 }; para poder pasar por referecia tiene que ser un array
+
 public abstract class UserInterface {
-	
-	// int[] cont = { 0 };  para poder pasar por referecia tiene que ser un array
+
 	private static final String SEPARATOR = "- -- - -- - -- - -- - -- - -- - -- - -- - -- -- -- - -- - -- - -- - -- - -- - -- - -- - -- - --";
 	private static final String accepts = "S";
 	private static final String notAccepts = "N";

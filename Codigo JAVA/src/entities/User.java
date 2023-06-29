@@ -10,8 +10,6 @@ public class User {
 	private double budget;
 	private double freeTime;
 	private AtractionType preferredAtraction;
-	// private LinkedList<Atraction> alreadyTakenAtractions = new
-	// LinkedList<Atraction>();
 
 	public User(String name, double budget, double freeTime2, AtractionType preferredAtraction) {
 		this.name = name;

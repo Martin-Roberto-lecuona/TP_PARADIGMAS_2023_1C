@@ -94,7 +94,7 @@ public class FileParser {
 			File file = new File(this.name);
 			reader = new Scanner(file);
 			reader.useLocale(Locale.ENGLISH);
-			if (reader.hasNextLine()) { // no se rompe todo si no hay atracciones sin promo
+			if (reader.hasNextLine()) {
 				reader.nextLine();
 			}
 			while (reader.hasNextLine()) {
@@ -107,9 +107,6 @@ public class FileParser {
 
 				if (!atractionsWithPromotion.isEmpty()) {
 					if (PromotionType.AXB == PromotionType.valueOf(parsedValues[0])) {
-						/*
-						 * puede haber mas de una gratis
-						 */
 						String[] atractionsFreeInFIle = parsedValues[2].split(",");
 						ArrayList<Atraction> free = findAtractionByName(atractionList, atractionsFreeInFIle);
 						promotionArrayList.add(new AxB(atractionsWithPromotion, free));
@@ -163,6 +160,7 @@ public class FileParser {
 			}
 		}
 	}
+
 	public static Boolean extensionValida(String name) {
 		String extension = ".txt";
 		return extension.equals(name.substring(name.lastIndexOf(".")));

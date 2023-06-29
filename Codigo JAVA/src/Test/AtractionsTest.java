@@ -15,117 +15,118 @@ class AtractionsTest {
 	@Test
 	void atraction_noMoneyUser() {
 		int[] cont = { 0 };
-		User uSinPlata1 = new User("Sin Plata1", 0, 20, AtractionType.AVENTURA);
+		User usuarioSinPlata = new User("Sin Plata1", 0, 20, AtractionType.AVENTURA);
 		ArrayList<Atraction> atractions = new ArrayList<Atraction>();
-		Atraction a1 = new Atraction("Parque", 50, 5, 3, AtractionType.PAISAJE);
-		Atraction a2 = new Atraction("Montana", 50, 50, 2, AtractionType.AVENTURA);
-		atractions.add(a1);
-		atractions.add(a2);
-		Offer real = Atraction.createNewSuggestion(atractions, cont, true, new ArrayList<Atraction>(), uSinPlata1);
+		Atraction atraccionPaisaje = new Atraction("Parque", 50, 5, 3, AtractionType.PAISAJE);
+		Atraction atraccionAventura = new Atraction("Montana", 50, 50, 2, AtractionType.AVENTURA);
+		atractions.add(atraccionPaisaje);
+		atractions.add(atraccionAventura);
+		Offer real = Atraction.createNewSuggestion(atractions, cont, true, new ArrayList<Atraction>(), usuarioSinPlata);
 		Assert.assertEquals(null, real);
 	}
-
 	@Test
 	void atraction_noTimeUser() {
 		int[] cont = { 0 };
-		User uSinTiempo1 = new User("Sin time", 100, 0, AtractionType.AVENTURA);
+		User usuarioSinTiempo = new User("Sin time", 100, 0, AtractionType.AVENTURA);
 		ArrayList<Atraction> atractions = new ArrayList<Atraction>();
-		Atraction a1 = new Atraction("Parque", 50, 5, 3, AtractionType.PAISAJE);
-		Atraction a2 = new Atraction("Montana", 50, 50, 2, AtractionType.AVENTURA);
-		atractions.add(a1);
-		atractions.add(a2);
-		Offer real = Atraction.createNewSuggestion(atractions, cont, true, new ArrayList<Atraction>(), uSinTiempo1);
+		Atraction atraccionPaisaje = new Atraction("Parque", 50, 5, 3, AtractionType.PAISAJE);
+		Atraction atraccionAventura = new Atraction("Montana", 50, 50, 2, AtractionType.AVENTURA);
+		atractions.add(atraccionPaisaje);
+		atractions.add(atraccionAventura);
+		Offer real = Atraction.createNewSuggestion(atractions, cont, true, new ArrayList<Atraction>(), usuarioSinTiempo);
 		Assert.assertEquals(null, real);
 	}
 
 	@Test
 	void atraction_enoughMoney() {
 		int[] cont = { 1 };
-		User plataJusta = new User("Plata justa", 50, 150, AtractionType.AVENTURA);
+		User usuarioPlataJusta = new User("Plata justa", 50, 150, AtractionType.AVENTURA);
 		ArrayList<Atraction> atractions = new ArrayList<Atraction>();
-		ArrayList<Atraction> compradas = new ArrayList<Atraction>();
-		Atraction a1 = new Atraction("Parque", 50, 5, 3, AtractionType.AVENTURA);
-		Atraction a2 = new Atraction("Montana", 50, 50, 2, AtractionType.AVENTURA);
-		atractions.add(a1);
-		atractions.add(a2);
-		plataJusta.appoint(a1);
-		compradas.add(a2);
-		Offer real = Atraction.createNewSuggestion(atractions, cont, true, compradas, plataJusta);
+		Atraction atraccionAventura = new Atraction("Parque", 50, 50, 3, AtractionType.AVENTURA);
+		Atraction atraccionAventura2 = new Atraction("Montana", 50, 50, 2, AtractionType.AVENTURA);
+		atractions.add(atraccionAventura);
+		atractions.add(atraccionAventura2);
+		Offer real = Atraction.createNewSuggestion(atractions, cont, true, new ArrayList<Atraction>(), usuarioPlataJusta);
+		usuarioPlataJusta.appoint(real);
+		real = Atraction.createNewSuggestion(atractions, cont, true, new ArrayList<Atraction>(), usuarioPlataJusta);
 		Assert.assertEquals(null, real);
 	}
 
 	@Test
 	void atraction_enoughTime() {
 		int[] cont = { 1 };
-		User tiempoJusto = new User("Tiempo justo", 150, 50, AtractionType.AVENTURA);
+		User usuarioTiempoJusto = new User("Tiempo justo", 150, 50, AtractionType.AVENTURA);
 		ArrayList<Atraction> atractions = new ArrayList<Atraction>();
-		Atraction a1 = new Atraction("Parque", 50, 50, 3, AtractionType.AVENTURA);
-		Atraction a2 = new Atraction("Montana", 50, 50, 2, AtractionType.AVENTURA);
-		atractions.add(a1);
-		atractions.add(a2);
-		tiempoJusto.appoint(a1);
-		Offer real = Atraction.createNewSuggestion(atractions, cont, true, new ArrayList<Atraction>(), tiempoJusto);
+		Atraction atraccionAventura = new Atraction("Parque", 50, 50, 3, AtractionType.AVENTURA);
+		Atraction atraccionAventura2 = new Atraction("Montana", 50, 50, 2, AtractionType.AVENTURA);
+		atractions.add(atraccionAventura);
+		atractions.add(atraccionAventura2);
+		Offer real = Atraction.createNewSuggestion(atractions, cont, true, new ArrayList<Atraction>(), usuarioTiempoJusto);
+		usuarioTiempoJusto.appoint(real);
+		real = Atraction.createNewSuggestion(atractions, cont, true, new ArrayList<Atraction>(), usuarioTiempoJusto);
 		Assert.assertEquals(null, real);
 	}
 
 	@Test
 	void atraction_noPreference() {
 		int[] cont = { 0 };
-		User preferenciaInex = new User("Preferencia no Encontrada", 1000, 2000, AtractionType.DEGUSTACION);
+		User usuarioSinAtrPreferida = new User("Preferencia no Encontrada", 1000, 2000, AtractionType.DEGUSTACION);
 		ArrayList<Atraction> atractions = new ArrayList<Atraction>();
-		Atraction a1 = new Atraction("Parque", 50, 50, 3, AtractionType.AVENTURA);
-		Atraction a2 = new Atraction("Montana", 50, 50, 2, AtractionType.PAISAJE);
-		atractions.add(a1);
-		atractions.add(a2);
-		Offer real = Atraction.createNewSuggestion(atractions, cont, true, new ArrayList<Atraction>(), preferenciaInex);
+		Atraction atraccionAventura = new Atraction("Parque", 50, 50, 3, AtractionType.AVENTURA);
+		Atraction atraccionPaisaje = new Atraction("Montana", 50, 50, 2, AtractionType.PAISAJE);
+		atractions.add(atraccionAventura);
+		atractions.add(atraccionPaisaje);
+		Offer real = Atraction.createNewSuggestion(atractions, cont, true, new ArrayList<Atraction>(), usuarioSinAtrPreferida);
 		Assert.assertEquals(null, real);
 	}
 
 	@Test
 	void atraction_baseCase() {
 		int[] cont = { 0 };
-		User u = new User("Soy bueno", 1000, 2000, AtractionType.DEGUSTACION);
+		User user =  new User("Soy bueno", 1000, 2000, AtractionType.DEGUSTACION);
 		ArrayList<Atraction> atractions = new ArrayList<Atraction>();
-		Atraction a1 = new Atraction("Parque", 50, 50, 3, AtractionType.DEGUSTACION);
-		Atraction a2 = new Atraction("Montana", 50, 50, 2, AtractionType.PAISAJE);
-		atractions.add(a1);
-		atractions.add(a2);
+		Atraction atraccionDegustacion = new Atraction("Parque", 50, 50, 3, AtractionType.DEGUSTACION);
+		Atraction atraccionPaisaje = new Atraction("Montana", 50, 50, 2, AtractionType.PAISAJE);
+		atractions.add(atraccionDegustacion);
+		atractions.add(atraccionPaisaje);
 
-		Offer real = Atraction.createNewSuggestion(atractions, cont, true, new ArrayList<Atraction>(), u);
-		Assert.assertEquals(a1, real);
+		Offer real = Atraction.createNewSuggestion(atractions, cont, true, new ArrayList<Atraction>(), user);
+		Assert.assertEquals(atraccionDegustacion, real);
 	}
 
 	@Test
 	void atraction_decraseSlots() {
 		int[] cont = { 1 };
-		User u1 = new User("Juan", 1000, 2000, AtractionType.DEGUSTACION);
+		User usuario = new User("Juan", 1000, 2000, AtractionType.DEGUSTACION);
 		ArrayList<Atraction> atractions = new ArrayList<Atraction>();
 		ArrayList<Atraction> compradas = new ArrayList<Atraction>();
-		Atraction a1 = new Atraction("Parque", 50, 50, 1, AtractionType.DEGUSTACION);
-		Atraction a2 = new Atraction("Montana", 50, 50, 2, AtractionType.DEGUSTACION);
-		atractions.add(a1);
-		atractions.add(a2);
-		u1.appoint(a1);
-		a1.decreaseSlots();
-		compradas.add(a1);
-		Offer real = Atraction.createNewSuggestion(atractions, cont, true, compradas, u1);
+		Atraction atraccionDegustacion = new Atraction("Parque", 50, 50, 1, AtractionType.DEGUSTACION);
+		Atraction atraccionDegustacion2 = new Atraction("Montana", 50, 50, 2, AtractionType.DEGUSTACION);
+		atractions.add(atraccionDegustacion);
+		atractions.add(atraccionDegustacion2);
+		Offer real = Atraction.createNewSuggestion(atractions, cont, true, compradas, usuario);
+		usuario.appoint(atraccionDegustacion);
+		atraccionDegustacion.decreaseSlots();
+		compradas.add(atraccionDegustacion2);
+		real = Atraction.createNewSuggestion(atractions, cont, true, compradas, usuario);
 		Assert.assertEquals(null, real);
 	}
 
 	@Test
 	void atraction_sameAtraction() {
 		int[] cont = { 1 };
-		User u1 = new User("Juan", 1000, 2000, AtractionType.DEGUSTACION);
+		User usuario = new User("Juan", 1000, 2000, AtractionType.DEGUSTACION);
 		ArrayList<Atraction> atractions = new ArrayList<Atraction>();
 		ArrayList<Atraction> compradas = new ArrayList<Atraction>();
-		Atraction a1 = new Atraction("Montana", 50, 50, 2, AtractionType.DEGUSTACION);
-		Atraction a2 = new Atraction("Montana", 50, 50, 40, AtractionType.DEGUSTACION);
-		atractions.add(a1);
-		atractions.add(a2);
-		u1.appoint(a1);
-		a1.decreaseSlots();
-		compradas.add(a1);
-		Offer real = Atraction.createNewSuggestion(atractions, cont, true, compradas, u1);
+		Atraction atraccionDegustacion = new Atraction("Montana", 50, 50, 2, AtractionType.DEGUSTACION);
+		Atraction atraccionDegustacionRepetido = new Atraction("Montana", 50, 50, 40, AtractionType.DEGUSTACION);
+		atractions.add(atraccionDegustacion);
+		atractions.add(atraccionDegustacionRepetido);
+		Offer real = Atraction.createNewSuggestion(atractions, cont, true, compradas, usuario);
+		usuario.appoint(real);
+		atraccionDegustacion.decreaseSlots();
+		compradas.add(atraccionDegustacion);
+		real = Atraction.createNewSuggestion(atractions, cont, true, compradas, usuario);
 		Assert.assertEquals(null, real);
 	}
 
