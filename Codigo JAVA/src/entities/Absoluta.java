@@ -3,6 +3,7 @@ package entities;
 import java.util.ArrayList;
 
 public class Absoluta extends Promotion {
+	
 	private double absolute = 0;
 
 	public Absoluta(ArrayList<Atraction> atractions, double absolute) {

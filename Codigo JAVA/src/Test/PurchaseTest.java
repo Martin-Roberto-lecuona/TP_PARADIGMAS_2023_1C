@@ -16,55 +16,57 @@ public class PurchaseTest {
 
 	@Test
 	public void showAllAtractionsInPromoAndInAtraction() {
-		User u1 = new User("u1", 120, 120, AtractionType.AVENTURA);
-		Purchase compra = new Purchase(u1);
-		ArrayList<Atraction> atractions = new ArrayList<Atraction>();
-		Atraction a1 = new Atraction("Parque", 50, 5, 3, AtractionType.PAISAJE);
-		Atraction a2 = new Atraction("Montana", 50, 50, 2, AtractionType.AVENTURA);
-		Atraction a3 = new Atraction("Cine", 10, 10, 3, AtractionType.DEGUSTACION);
-		Atraction a4 = new Atraction("ZZZ", 10, 10, 3, AtractionType.PAISAJE);
-		atractions.add(a1);
-		atractions.add(a2);
-		Porcentual promo = new Porcentual(atractions, 0.35);
+		User user = new User("user", 120, 120, AtractionType.AVENTURA);
+		Purchase compra = new Purchase(user);
 
-		compra.add(promo);
-		compra.add(a3);
-		compra.add(a4);
+		ArrayList<Atraction> packAtractions = new ArrayList<Atraction>();
+		Atraction atractionPaisaje_inPack = new Atraction("Parque", 50, 5, 3, AtractionType.PAISAJE);
+		Atraction atractionAventura_inPack = new Atraction("Montana", 50, 50, 2, AtractionType.AVENTURA);
+		packAtractions.add(atractionPaisaje_inPack);
+		packAtractions.add(atractionAventura_inPack);
+		Porcentual porcentualPromotion = new Porcentual(packAtractions, 0.35);
+		compra.add(porcentualPromotion);
 
+		Atraction atractionDegustacion = new Atraction("Cine", 10, 10, 3, AtractionType.DEGUSTACION);
+		compra.add(atractionDegustacion);
+		Atraction atractionPaisajeOther = new Atraction("Circuito", 10, 10, 3, AtractionType.PAISAJE);
+		compra.add(atractionPaisajeOther);
+		
 		ArrayList<Offer> expected = new ArrayList<Offer>();
 
-		expected.add(a1);
-		expected.add(a2);
-		expected.add(a3);
-		expected.add(a4);
+		expected.add(atractionPaisaje_inPack);
+		expected.add(atractionAventura_inPack);
+		expected.add(atractionDegustacion);
+		expected.add(atractionPaisajeOther);
 
 		Assert.assertEquals(expected, compra.getAllAtractions());
 	}
 
 	@Test
 	public void addNullVal() {
-		User u1 = new User("u1", 120, 120, AtractionType.AVENTURA);
-		Purchase compra = new Purchase(u1);
+		User user = new User("user", 120, 120, AtractionType.AVENTURA);
+		Purchase compra = new Purchase(user);
 		ArrayList<Offer> expected = new ArrayList<Offer>();
 		Assert.assertEquals(expected, compra.getAllAtractions());
 	}
 
 	@Test
 	public void checkTimeAndCostInPurchase() {
-		User u1 = new User("u1", 120, 120, AtractionType.AVENTURA);
-		Purchase compra = new Purchase(u1);
-		ArrayList<Atraction> atractions = new ArrayList<Atraction>();
-		Atraction a1 = new Atraction("aaa", 10, 5, 3, AtractionType.PAISAJE);
-		Atraction a2 = new Atraction("bbb", 20, 10, 2, AtractionType.AVENTURA);
-		Atraction a3 = new Atraction("ccc", 30, 15, 3, AtractionType.DEGUSTACION);
-		Atraction a4 = new Atraction("ZZZ", 40, 20, 3, AtractionType.PAISAJE);
-		atractions.add(a1);
-		atractions.add(a2);
-		Porcentual promo = new Porcentual(atractions, 0.5);
+		User user = new User("user", 120, 120, AtractionType.AVENTURA);
+		Purchase compra = new Purchase(user);
 
-		compra.add(promo);
-		compra.add(a3);
-		compra.add(a4);
+		ArrayList<Atraction> packAtractions = new ArrayList<Atraction>();
+		Atraction atractionPaisaje_inPack = new Atraction("Parque", 10, 5, 3, AtractionType.PAISAJE);
+		Atraction atractionAventura_inPack = new Atraction("Montana", 20, 10, 2, AtractionType.AVENTURA);
+		packAtractions.add(atractionPaisaje_inPack);
+		packAtractions.add(atractionAventura_inPack);
+		Porcentual porcentualPromotion = new Porcentual(packAtractions, 0.5);
+		compra.add(porcentualPromotion);
+
+		Atraction atractionDegustacion = new Atraction("Cine", 30, 15, 3, AtractionType.DEGUSTACION);
+		compra.add(atractionDegustacion);
+		Atraction atractionPaisajeOther = new Atraction("Circuito", 40, 20, 3, AtractionType.PAISAJE);
+		compra.add(atractionPaisajeOther);
 
 		double costoTotal = (10 + 20) / 2 + 30 + 40;
 		double tiempoTotal = 5 + 10 + 15 + 20;
