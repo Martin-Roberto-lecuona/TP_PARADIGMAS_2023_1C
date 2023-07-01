@@ -94,9 +94,6 @@ public class FileParser {
 			File file = new File(this.name);
 			reader = new Scanner(file);
 			reader.useLocale(Locale.ENGLISH);
-			if (reader.hasNextLine()) {
-				reader.nextLine();
-			}
 			while (reader.hasNextLine()) {
 				atractionsWithPromotion = new ArrayList<Atraction>();
 				String line = reader.nextLine();

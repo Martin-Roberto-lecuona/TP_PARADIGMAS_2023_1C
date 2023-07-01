@@ -9,9 +9,9 @@ public class AxB extends Promotion {
 	public AxB(ArrayList<Atraction> atractions, ArrayList<Atraction> free) {
 		super(atractions);
 		this.free = free;
+		calculateTotalWithDiscount();
 		calculateTotalCost();
 		calculateTotalTime();
-		calculateTotalWithDiscount();
 	}
 
 	@Override
@@ -21,11 +21,7 @@ public class AxB extends Promotion {
 
 	@Override
 	public void calculateTotalWithDiscount() {
-		double val = 0;
-		for (Atraction f : free) {
-			val += f.getTotalCost();
-		}
-		this.totalCost = this.totalCostWithNoDiscount - val;
+		this.totalCost = this.totalCostWithNoDiscount;
 	}
 
 	public void calculateTotalTime() {
@@ -35,11 +31,8 @@ public class AxB extends Promotion {
 	}
 
 	public void calculateTotalCost() {
-		for (Atraction atr : atractionList) {
-			this.totalCostWithNoDiscount += atr.getTotalCost();
-		}
 		for (Atraction f : free) {
-			this.totalCost += f.getTotalCost();
+			this.totalCostWithNoDiscount += f.getTotalCost();
 		}
 	}
 

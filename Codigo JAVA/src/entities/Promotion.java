@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Promotion extends Offer implements Comparable<Promotion> {
 
-	protected double totalCostWithNoDiscount;
+	protected double totalCostWithNoDiscount=0;
 
 	protected String[] atractionNames;
 	protected ArrayList<Atraction> atractionList = new ArrayList<Atraction>();
@@ -37,7 +37,7 @@ public abstract class Promotion extends Offer implements Comparable<Promotion> {
 		return totalCost;
 	}
 
-	public void setTotalCost(double totalCost) {
+	public void setTotalCost(double totalCost) { //Revisar
 		this.totalCost = totalCost;
 	}
 
