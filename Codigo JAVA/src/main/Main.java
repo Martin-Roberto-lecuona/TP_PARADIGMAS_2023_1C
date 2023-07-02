@@ -32,16 +32,15 @@ public class Main {
 		ArrayList<Promotion> promotionArrayList = promotionsFile.importPromotionsFromFile(atractionArray);
 		Collections.sort(promotionArrayList);
 		ArrayList<User> usersArrayList = userFile.importUsersFromFile();
-
-		purchaseFile.appendToFile("Compras del dia: " + java.time.LocalDate.now(), false);
-		System.out.println("\t\t\t\t¡Bienvenido/a a Juego de Tronos!\n");
+		
+		UserInterface.welcome(purchaseFile);
 
 		Scanner input = new Scanner(System.in);
 		for (User user : usersArrayList) {
-			System.out.println(SEPARATOR);
+			
+			UserInterface.eachUser(user);
 			Purchase compra = new Purchase(user);
-			System.out.println("Nombre del visitante: " + user.getName() + ".\n");
-
+			
 			UserInterface.askUserPromotion(promotionArrayList, input, user, compra, true);
 
 			UserInterface.askUserAtraction(atractionArray, input, user, compra, true);
@@ -53,7 +52,5 @@ public class Main {
 			UserInterface.showTicketPurchase(purchaseFile, compra);
 		}
 		input.close();
-
 	}
-
 }

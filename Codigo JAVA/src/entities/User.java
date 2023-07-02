@@ -19,9 +19,7 @@ public class User {
 	}
 
 	public boolean alreadyTaken(Atraction atr, ArrayList<Atraction> alreadyTaken) {
-
 		return alreadyTaken.contains(atr);
-
 	}
 
 	public boolean alreadyTakenAtrList(ArrayList<Atraction> atractionList, ArrayList<Atraction> alreadyTaken) {
@@ -63,17 +61,6 @@ public class User {
 		this.freeTime = (this.freeTime - atr.getTotalTime());
 	}
 
-	public void appoint(Promotion promo) {
-		for (Atraction atrac : promo.getAtractions()) {
-			appoint(atrac);
-		}
-	}
-
-	@Override
-	public String toString() {
-		return "Nombre=" + name + ", Presupuesto=" + budget + ", Tiempo Libre=" + freeTime + ", Atraccion preferida="
-				+ preferredAtraction;
-	}
 
 	public String getName() {
 		return this.name;
@@ -83,8 +70,5 @@ public class User {
 		return preferredAtraction;
 	}
 
-	public void setPreferredAtraccion(AtractionType preferredAtraction) {
-		this.preferredAtraction = preferredAtraction;
-	}
 
 }

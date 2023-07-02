@@ -168,5 +168,4 @@ class AtractionsTest {
 		Offer real = Atraction.createNewSuggestion(atractions, cont, true, compradas, usuario);
 		Assert.assertEquals(null, real);
 	}
-
 }

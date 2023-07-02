@@ -74,5 +74,4 @@ public class PurchaseTest {
 		Assert.assertEquals(costoTotal, compra.getTotalCost(), 0.1);
 		Assert.assertEquals(tiempoTotal, compra.getTotalTime(), 0.1);
 	}
-
 }

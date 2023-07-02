@@ -72,4 +72,16 @@ public abstract class UserInterface {
 		purchaseFile.appendToFile(compra, true);
 	}
 
+	public static void welcome(FileParser purchaseFile) {
+		purchaseFile.appendToFile("Compras del dia: " + java.time.LocalDate.now(), false);
+		System.out.println("\t\t\t\t¡Bienvenido/a a Juego de Tronos!\n");
+		
+	}
+
+	public static void eachUser(User user) {
+		System.out.println(SEPARATOR);
+		System.out.println("Nombre del visitante: " + user.getName() + ".\n");
+		
+	}
+
 }

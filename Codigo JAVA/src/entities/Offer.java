@@ -32,11 +32,6 @@ public abstract class Offer {
 	public abstract String presentation();
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(totalCost, totalTime, type);
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

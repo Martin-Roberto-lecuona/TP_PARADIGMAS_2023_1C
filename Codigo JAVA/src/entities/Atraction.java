@@ -19,14 +19,6 @@ public class Atraction extends Offer implements Comparable<Atraction> {
 		this.type = atractionType;
 	}
 
-	public Atraction(Atraction atr) {
-		this.name = atr.getName();
-		this.totalCost = atr.getTotalCost();
-		this.totalTime = atr.getTotalTime();
-		this.slots = atr.getSlots();
-		this.type = atr.getType();
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -48,14 +40,6 @@ public class Atraction extends Offer implements Comparable<Atraction> {
 		}
 		return Double.compare(a.getTotalCost(), this.totalCost);
 
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(name, slots);
-		return result;
 	}
 
 	@Override

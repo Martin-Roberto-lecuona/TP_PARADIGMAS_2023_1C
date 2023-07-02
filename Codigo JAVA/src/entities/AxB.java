@@ -47,9 +47,6 @@ public class AxB extends Promotion {
 	@Override
 	public void decreaseSlots() {
 		super.decreaseSlots();
-		/*
-		 * if (this.slots != 0) { this.slots--; }
-		 */
 		if (!free.isEmpty()) {
 			for (Atraction atraction : this.free) {
 				atraction.decreaseSlots();

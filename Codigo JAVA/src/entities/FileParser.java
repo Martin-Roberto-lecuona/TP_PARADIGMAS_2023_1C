@@ -83,7 +83,6 @@ public class FileParser {
 			reader.close();
 		}
 		return usersArrayList;
-
 	}
 
 	public ArrayList<Promotion> importPromotionsFromFile(ArrayList<Atraction> atractionList) {
@@ -114,9 +113,7 @@ public class FileParser {
 								.add(new Porcentual(atractionsWithPromotion, Double.valueOf(parsedValues[2])));
 					}
 				}
-
 			}
-
 		} catch (FileNotFoundException e) {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
@@ -157,10 +154,4 @@ public class FileParser {
 			}
 		}
 	}
-
-	public static Boolean extensionValida(String name) {
-		String extension = ".txt";
-		return extension.equals(name.substring(name.lastIndexOf(".")));
-	}
-
 }

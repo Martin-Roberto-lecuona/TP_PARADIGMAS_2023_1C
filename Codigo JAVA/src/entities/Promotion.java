@@ -24,29 +24,12 @@ public abstract class Promotion extends Offer implements Comparable<Promotion> {
 		}
 	}
 
-	public void decreaseSlots(ArrayList<Atraction> atractionArray) {
-		for (Atraction atraction : this.atractionList) {
-			atraction.decreaseSlots();
-			if (atraction.getSlots() <= 0) {
-				atractionArray.remove(atractionArray.indexOf(atraction));
-			}
-		}
-	}
-
 	public double getTotalCost() {
 		return totalCost;
 	}
 
-	public void setTotalCost(double totalCost) { //Revisar
-		this.totalCost = totalCost;
-	}
-
 	public double getTotalTime() {
 		return totalTime;
-	}
-
-	public double getTotalCostWithNoDiscount() {
-		return totalCostWithNoDiscount;
 	}
 
 	@Override

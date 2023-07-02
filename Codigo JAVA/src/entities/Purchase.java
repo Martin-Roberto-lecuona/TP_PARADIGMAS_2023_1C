@@ -14,10 +14,6 @@ public class Purchase {
 		this.setUserPurchasing(u);
 	}
 
-	public ArrayList<Offer> getoffersList() {
-		return offersList;
-	}
-
 	public ArrayList<Atraction> getAllAtractions() {
 		ArrayList<Atraction> res = new ArrayList<Atraction>();
 		for (Offer offer : this.offersList) {
