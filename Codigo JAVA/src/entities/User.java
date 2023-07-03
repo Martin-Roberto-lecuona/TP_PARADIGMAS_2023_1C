@@ -18,11 +18,11 @@ public class User {
 		this.preferredAtraction = preferredAtraction;
 	}
 
-	public boolean alreadyTaken(Atraction atr, ArrayList<Atraction> alreadyTaken) {
+	public boolean isThisAtractionAlreadyTaken(Atraction atr, ArrayList<Atraction> alreadyTaken) {
 		return alreadyTaken.contains(atr);
 	}
 
-	public boolean alreadyTakenAtrList(ArrayList<Atraction> atractionList, ArrayList<Atraction> alreadyTaken) {
+	public boolean isThisAtractionListalreadyTaken(ArrayList<Atraction> atractionList, ArrayList<Atraction> alreadyTaken) {
 		for (Atraction atr : atractionList) {
 			if (alreadyTaken.contains(atr)) {
 				return false;
@@ -31,7 +31,7 @@ public class User {
 		return true;
 	}
 
-	public boolean canGo(Atraction atr) {
+	public boolean canGoTo(Atraction atr) {
 		if (atr.getSlots() <= 0 || Double.compare(this.budget, atr.getTotalCost()) < 0
 				|| Double.compare(this.freeTime, atr.getTotalTime()) < 0) {
 			return false;
@@ -40,7 +40,7 @@ public class User {
 		return true;
 	}
 
-	public boolean canGo(Promotion promo) {
+	public boolean canGoTo(Promotion promo) {
 
 		if (Double.compare(this.budget, promo.getTotalCost()) < 0
 				|| Double.compare(this.freeTime, promo.getTotalTime()) < 0) {
@@ -56,7 +56,7 @@ public class User {
 		return flagCanGoAtraction;
 	}
 
-	public void appoint(Offer atr) {
+	public void acquire(Offer atr) {
 		this.budget = (this.budget - atr.getTotalCost());
 		this.freeTime = (this.freeTime - atr.getTotalTime());
 	}

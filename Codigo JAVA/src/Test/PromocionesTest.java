@@ -138,7 +138,7 @@ public class PromocionesTest {
 		promotions.add(promotionAxB_Adventure);
 
 		Offer offerToTake = Promotion.createNewSuggestion(promotions, cont, true, compradas, userEnoughMoney);
-		userEnoughMoney.appoint(offerToTake);
+		userEnoughMoney.acquire(offerToTake);
 		compradas.addAll(offerToTake.getAtractions());
 
 		Offer real = Promotion.createNewSuggestion(promotions, cont, false, compradas, userEnoughMoney);
@@ -173,7 +173,7 @@ public class PromocionesTest {
 		promotions.add(promotionAxB_Adventure);
 
 		Offer offerToTake = Promotion.createNewSuggestion(promotions, cont, true, compradas, userEnoughTime);
-		userEnoughTime.appoint(offerToTake);
+		userEnoughTime.acquire(offerToTake);
 		compradas.addAll(offerToTake.getAtractions());
 
 		Offer real = Promotion.createNewSuggestion(promotions, cont, false, compradas, userEnoughTime);
@@ -285,17 +285,17 @@ public class PromocionesTest {
 		User normalUser = new User("base_case_user", 1000, 2000, AtractionType.AVENTURA);
 		ArrayList<Atraction> compradas = new ArrayList<Atraction>();
 
-		Atraction atractionAventura = new Atraction("Parque", 50, 50, 3, AtractionType.AVENTURA);
-		Atraction atractionPaisaje = new Atraction("Montana", 50, 50, 1, AtractionType.PAISAJE);
-		Atraction atractionDegustacion = new Atraction("Bar", 10, 10, 3, AtractionType.DEGUSTACION);
+		Atraction adventureAttraction = new Atraction("Parque", 50, 50, 3, AtractionType.AVENTURA);
+		Atraction landscapeAttraction = new Atraction("Montana", 50, 50, 1, AtractionType.PAISAJE);
+		Atraction tastingAttraction = new Atraction("Bar", 10, 10, 3, AtractionType.DEGUSTACION);
 
 		ArrayList<Atraction> aventuraPack_Atractions = new ArrayList<Atraction>();
-		aventuraPack_Atractions.add(atractionAventura);
-		aventuraPack_Atractions.add(atractionPaisaje);
+		aventuraPack_Atractions.add(adventureAttraction);
+		aventuraPack_Atractions.add(landscapeAttraction);
 
 		ArrayList<Atraction> absolutaPack_Atractions = new ArrayList<Atraction>();
-		absolutaPack_Atractions.add(atractionDegustacion);
-		absolutaPack_Atractions.add(atractionPaisaje);
+		absolutaPack_Atractions.add(tastingAttraction);
+		absolutaPack_Atractions.add(landscapeAttraction);
 
 		Porcentual promotionPorcentaje = new Porcentual(aventuraPack_Atractions, 0.5);
 		Absoluta promotionAbsoluta = new Absoluta(absolutaPack_Atractions, 10);
@@ -304,7 +304,7 @@ public class PromocionesTest {
 		promotions.add(promotionAbsoluta);
 
 		Offer offerToTake = Promotion.createNewSuggestion(promotions, cont, true, compradas, normalUser);
-		normalUser.appoint(offerToTake);
+		normalUser.acquire(offerToTake);
 		offerToTake.decreaseSlots();
 		compradas.addAll(offerToTake.getAtractions());
 
@@ -339,7 +339,7 @@ public class PromocionesTest {
 
 		Offer offerToFirstUser = Promotion.createNewSuggestion(promotions, cont, false, new ArrayList<Atraction>(),
 				user_FirstToGo);
-		user_FirstToGo.appoint(offerToFirstUser);
+		user_FirstToGo.acquire(offerToFirstUser);
 		offerToFirstUser.decreaseSlots();
 
 		User user_SecondToGo = new User("user_second_to_go", 2000, 1000, AtractionType.PAISAJE);

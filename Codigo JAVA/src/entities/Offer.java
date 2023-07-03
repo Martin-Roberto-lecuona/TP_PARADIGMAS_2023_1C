@@ -1,8 +1,6 @@
 package entities;
 
 import java.util.ArrayList;
-import java.util.Objects;
-
 import enums.AtractionType;
 
 public abstract class Offer {
@@ -29,7 +27,7 @@ public abstract class Offer {
 
 	public abstract void decreaseSlots();
 
-	public abstract String presentation();
+	public abstract String selfPresentationToString();
 
 	@Override
 	public boolean equals(Object obj) {

@@ -16,7 +16,7 @@ public class AxB extends Promotion {
 
 	@Override
 	public String toString() {
-		return super.toString() + "Y ademas totalmente GRATIS: " + getFreeString() + "\n";
+		return super.toString() + "Y ademas totalmente GRATIS: " + getFreeAtractionsToString() + "\n";
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class AxB extends Promotion {
 		}
 	}
 
-	public String getFreeString() {
+	public String getFreeAtractionsToString() {
 		String res = "";
 		for (Atraction f : free) {
 			res = res + "" + f;

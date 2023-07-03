@@ -74,9 +74,9 @@ public class Atraction extends Offer implements Comparable<Atraction> {
 				show = offerArray.get(cont[0]).getType() != user.getPreferredAtraccion();
 			}
 
-			boolean alreadyTakenBoolean = !user.alreadyTaken(offerArray.get(cont[0]), alreadyTakenArray);
+			boolean alreadyTakenBoolean = !user.isThisAtractionAlreadyTaken(offerArray.get(cont[0]), alreadyTakenArray);
 
-			if (user.canGo((Atraction) offerArray.get(cont[0])) && alreadyTakenBoolean && show) {
+			if (show && user.canGoTo((Atraction) offerArray.get(cont[0])) && alreadyTakenBoolean) {
 				cont[0]++;
 				return offerArray.get(cont[0] - 1);
 			}
@@ -88,7 +88,7 @@ public class Atraction extends Offer implements Comparable<Atraction> {
 	}
 
 	@Override
-	public String presentation() {
+	public String selfPresentationToString() {
 		return "La ATRACCIÓN que le presentamos es: " + this
 				+ "\n\n¿Acepta la Atracción? Ingrese 'S' para aceptar, 'N' para rechazar:";
 	}

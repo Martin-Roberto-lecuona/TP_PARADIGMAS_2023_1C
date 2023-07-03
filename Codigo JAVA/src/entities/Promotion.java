@@ -57,8 +57,8 @@ public abstract class Promotion extends Offer implements Comparable<Promotion> {
 		boolean ifCanGo, preferred;
 		while (i < offerArrayList.size()) {
 
-			ifCanGo = user.canGo(offerArrayList.get(i))
-					&& user.alreadyTakenAtrList(offerArrayList.get(i).getAtractions(), alreadyTaken);
+			ifCanGo = user.canGoTo(offerArrayList.get(i))
+					&& user.isThisAtractionListalreadyTaken(offerArrayList.get(i).getAtractions(), alreadyTaken);
 
 			if (basedOnPreferred) {
 				preferred = offerArrayList.get(i).getType() == user.getPreferredAtraccion();
@@ -76,7 +76,7 @@ public abstract class Promotion extends Offer implements Comparable<Promotion> {
 		return null;
 	}
 
-	public String presentation() {
+	public String selfPresentationToString() {
 		return "La PROMOCIÓN que le presentamos es: " + this
 				+ "\n¿Acepta la Promoción? Ingrese 'S' para aceptar, 'N' para rechazar:";
 	}

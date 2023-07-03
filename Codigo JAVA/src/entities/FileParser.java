@@ -27,21 +27,10 @@ public class FileParser {
 			File file = new File(this.name);
 			reader = new Scanner(file);
 			reader.useLocale(Locale.ENGLISH);
-			if (reader.hasNextLine()) {
-				reader.nextLine();
-			}
+			skipHeader(reader);
 			while (reader.hasNextLine()) {
 
-				String line = reader.nextLine();
-				String[] parsedValues = line.split(";");
-
-				String name = parsedValues[0];
-				double cost = Double.valueOf(parsedValues[1]);
-				double estimatedTime = Double.valueOf(parsedValues[2]);
-				int maxSlots = Integer.valueOf(parsedValues[3]);
-				AtractionType realAtractionType = AtractionType.valueOf(parsedValues[4].toUpperCase());
-
-				atractionArray.add(new Atraction(name, cost, estimatedTime, maxSlots, realAtractionType));
+				atractionArray.add(atractionParser(reader));
 			}
 
 		} catch (FileNotFoundException e) {
@@ -53,6 +42,19 @@ public class FileParser {
 		return atractionArray;
 	}
 
+	private Atraction atractionParser(Scanner reader) {
+		String line = reader.nextLine();
+		String[] parsedValues = line.split(";");
+
+		String name = parsedValues[0];
+		double cost = Double.valueOf(parsedValues[1]);
+		double estimatedTime = Double.valueOf(parsedValues[2]);
+		int maxSlots = Integer.valueOf(parsedValues[3]);
+		AtractionType realAtractionType = AtractionType.valueOf(parsedValues[4].toUpperCase());
+
+		return new Atraction(name, cost, estimatedTime, maxSlots, realAtractionType);
+	}
+
 	public ArrayList<User> importUsersFromFile() {
 		ArrayList<User> usersArrayList = new ArrayList<User>();
 		Scanner reader = null;
@@ -60,20 +62,9 @@ public class FileParser {
 			File file = new File(this.name);
 			reader = new Scanner(file);
 			reader.useLocale(Locale.ENGLISH);
-			if (reader.hasNextLine()) {
-				reader.nextLine();
-			}
+			skipHeader(reader);
 			while (reader.hasNextLine()) {
-
-				String line = reader.nextLine();
-				String[] parsedValues = line.split(";");
-
-				String name = parsedValues[0];
-				double budget = Double.valueOf(parsedValues[1]);
-				double freeTime = Double.valueOf(parsedValues[2]);
-				AtractionType preferredAtractionType = AtractionType.valueOf(parsedValues[3].toUpperCase());
-
-				usersArrayList.add(new User(name, budget, freeTime, preferredAtractionType));
+				usersArrayList.add(userParser(reader));
 			}
 
 		} catch (FileNotFoundException e) {
@@ -85,34 +76,27 @@ public class FileParser {
 		return usersArrayList;
 	}
 
+	private User userParser(Scanner reader) {
+		String line = reader.nextLine();
+		String[] parsedValues = line.split(";");
+
+		String name = parsedValues[0];
+		double budget = Double.valueOf(parsedValues[1]);
+		double freeTime = Double.valueOf(parsedValues[2]);
+		AtractionType preferredAtractionType = AtractionType.valueOf(parsedValues[3].toUpperCase());
+
+		return new User(name, budget, freeTime, preferredAtractionType);
+	}
+
 	public ArrayList<Promotion> importPromotionsFromFile(ArrayList<Atraction> atractionList) {
 		ArrayList<Promotion> promotionArrayList = new ArrayList<Promotion>();
-		ArrayList<Atraction> atractionsWithPromotion = new ArrayList<Atraction>();
 		Scanner reader = null;
 		try {
 			File file = new File(this.name);
 			reader = new Scanner(file);
 			reader.useLocale(Locale.ENGLISH);
 			while (reader.hasNextLine()) {
-				atractionsWithPromotion = new ArrayList<Atraction>();
-				String line = reader.nextLine();
-				String[] parsedValues = line.split(";");
-				String[] atractionsInFIle = parsedValues[1].split(",");
-
-				atractionsWithPromotion = findAtractionByName(atractionList, atractionsInFIle);
-
-				if (!atractionsWithPromotion.isEmpty()) {
-					if (PromotionType.AXB == PromotionType.valueOf(parsedValues[0])) {
-						String[] atractionsFreeInFIle = parsedValues[2].split(",");
-						ArrayList<Atraction> free = findAtractionByName(atractionList, atractionsFreeInFIle);
-						promotionArrayList.add(new AxB(atractionsWithPromotion, free));
-					} else if (PromotionType.ABSOLUTA == PromotionType.valueOf(parsedValues[0])) {
-						promotionArrayList.add(new Absoluta(atractionsWithPromotion, Double.valueOf(parsedValues[2])));
-					} else {
-						promotionArrayList
-								.add(new Porcentual(atractionsWithPromotion, Double.valueOf(parsedValues[2])));
-					}
-				}
+				promotionArrayList.add(promotionParser(atractionList, reader));
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("An error occurred.");
@@ -122,6 +106,36 @@ public class FileParser {
 		}
 		return promotionArrayList;
 
+	}
+
+	private Promotion promotionParser(ArrayList<Atraction> atractionList, Scanner reader) {
+		ArrayList<Atraction> atractionsWithPromotion;
+		atractionsWithPromotion = new ArrayList<Atraction>();
+		String line = reader.nextLine();
+		String[] parsedValues = line.split(";");
+		String[] atractionsInFIle = parsedValues[1].split(",");
+
+		atractionsWithPromotion = findAtractionByName(atractionList, atractionsInFIle);
+
+		if (atractionsWithPromotion.isEmpty()) {
+			return null;
+		}
+		return createNewPromotionBasedOnType(atractionList, atractionsWithPromotion, parsedValues);
+	}
+
+	private Promotion createNewPromotionBasedOnType(ArrayList<Atraction> atractionList,
+			ArrayList<Atraction> atractionsWithPromotion, String[] parsedValues) {
+		PromotionType promotionType = PromotionType.valueOf(parsedValues[0]);
+		if (PromotionType.AXB == promotionType) {
+			String[] atractionsFreeInFIle = parsedValues[2].split(",");
+			ArrayList<Atraction> free = findAtractionByName(atractionList, atractionsFreeInFIle);
+			return new AxB(atractionsWithPromotion, free);
+		}
+		Double discount = Double.valueOf(parsedValues[2]);
+		if (PromotionType.ABSOLUTA == promotionType) {
+			return new Absoluta(atractionsWithPromotion, discount);
+		}
+		return new Porcentual(atractionsWithPromotion, discount);
 	}
 
 	private ArrayList<Atraction> findAtractionByName(ArrayList<Atraction> origin, String[] atractions) {
@@ -137,7 +151,7 @@ public class FileParser {
 		return res;
 	}
 
-	public void appendToFile(Object data, boolean append) {
+	public void writeObjectToFile(Object data, boolean append) {
 		FileWriter writer = null;
 		try {
 			writer = new FileWriter(this.name, append);
@@ -152,6 +166,12 @@ public class FileParser {
 					e.printStackTrace();
 				}
 			}
+		}
+	}
+
+	private void skipHeader(Scanner reader) {
+		if (reader.hasNextLine()) {
+			reader.nextLine();
 		}
 	}
 }

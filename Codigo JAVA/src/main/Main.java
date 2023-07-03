@@ -13,8 +13,6 @@ import interfaces.UserInterface;
 
 public class Main {
 
-	private static final String SEPARATOR = "***********************************************************************************************";
-
 	private static final String pathAtraction = "casos de prueba/in/atractions.in";
 	private static final String pathPromotions = "casos de prueba/in/promotions.in";
 	private static final String pathUsers = "casos de prueba/in/users.in";
@@ -33,16 +31,16 @@ public class Main {
 		Collections.sort(promotionArrayList);
 		ArrayList<User> usersArrayList = userFile.importUsersFromFile();
 		
-		UserInterface.welcome(purchaseFile);
+		UserInterface.welcomeSign(purchaseFile);
 
 		Scanner input = new Scanner(System.in);
 		for (User user : usersArrayList) {
 			
-			UserInterface.eachUser(user);
+			UserInterface.presentUserSign(user);
 			Purchase compra = new Purchase(user);
 			
 			UserInterface.askUserPromotion(promotionArrayList, input, user, compra, true);
-
+			
 			UserInterface.askUserAtraction(atractionArray, input, user, compra, true);
 
 			UserInterface.askUserPromotion(promotionArrayList, input, user, compra, false);

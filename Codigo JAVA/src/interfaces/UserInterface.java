@@ -19,28 +19,28 @@ public abstract class UserInterface {
 	private static final String notAccepts = "N";
 
 	public static void askUserAtraction(ArrayList<Atraction> offerArray, Scanner input, User user, Purchase compra,
-			boolean basedOnPreferred) {
+			boolean basedOnPreference) {
 
 		int[] cont = { 0 };
-		Offer off = Atraction.createNewSuggestion(offerArray, cont, basedOnPreferred, compra.getAllAtractions(), user);
+		Offer off = Atraction.createNewSuggestion(offerArray, cont, basedOnPreference, compra.getAllAtractions(), user);
 
 		while (off != null) {
 			userInputHandler(input, user, compra, off);
 			cont[0]++;
 
-			off = Atraction.createNewSuggestion(offerArray, cont, basedOnPreferred, compra.getAllAtractions(), user);
+			off = Atraction.createNewSuggestion(offerArray, cont, basedOnPreference, compra.getAllAtractions(), user);
 		}
 	}
 
 	public static void askUserPromotion(ArrayList<Promotion> offerArray, Scanner input, User user, Purchase compra,
-			boolean basedOnPreferred) {
+			boolean basedOnPreference) {
 		int[] cont = { 0 };
-		Offer off = Promotion.createNewSuggestion(offerArray, cont, basedOnPreferred, compra.getAllAtractions(), user);
+		Offer off = Promotion.createNewSuggestion(offerArray, cont, basedOnPreference, compra.getAllAtractions(), user);
 		while (off != null) {
 			userInputHandler(input, user, compra, off);
 			cont[0]++;
 
-			off = Promotion.createNewSuggestion(offerArray, cont, basedOnPreferred, compra.getAllAtractions(), user);
+			off = Promotion.createNewSuggestion(offerArray, cont, basedOnPreference, compra.getAllAtractions(), user);
 		}
 	}
 
@@ -48,13 +48,13 @@ public abstract class UserInterface {
 		String option;
 		do {
 
-			System.out.println(atr.presentation());
+			System.out.println(atr.selfPresentationToString());
 			option = input.next();
 			option = option.toUpperCase();
 
 			if (option.equals(accepts)) {
 				System.out.println("ACEPTADA!");
-				user.appoint(atr);
+				user.acquire(atr);
 				atr.decreaseSlots();
 				compra.add(atr);
 			} else if (!option.equals(notAccepts)) {
@@ -69,16 +69,16 @@ public abstract class UserInterface {
 		System.out.println(String.format("\t\t\t*****  \t%25s \t*****", "TURISMO JUEGO DE TRONOS"));
 		System.out.println(compra);
 		System.out.println(SEPARATOR);
-		purchaseFile.appendToFile(compra, true);
+		purchaseFile.writeObjectToFile(compra, true);
 	}
 
-	public static void welcome(FileParser purchaseFile) {
-		purchaseFile.appendToFile("Compras del dia: " + java.time.LocalDate.now(), false);
+	public static void welcomeSign(FileParser purchaseFile) {
+		purchaseFile.writeObjectToFile("Compras del dia: " + java.time.LocalDate.now(), false);
 		System.out.println("\t\t\t\t¡Bienvenido/a a Juego de Tronos!\n");
 		
 	}
 
-	public static void eachUser(User user) {
+	public static void presentUserSign(User user) {
 		System.out.println(SEPARATOR);
 		System.out.println("Nombre del visitante: " + user.getName() + ".\n");
 		
