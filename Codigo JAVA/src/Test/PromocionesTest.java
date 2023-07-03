@@ -285,17 +285,17 @@ public class PromocionesTest {
 		User normalUser = new User("base_case_user", 1000, 2000, AtractionType.AVENTURA);
 		ArrayList<Atraction> compradas = new ArrayList<Atraction>();
 
-		Atraction atractionAventura = new Atraction("Parque", 50, 50, 3, AtractionType.AVENTURA);
-		Atraction atractionPaisaje = new Atraction("Montana", 50, 50, 1, AtractionType.PAISAJE);
-		Atraction atractionDegustacion = new Atraction("Bar", 10, 10, 3, AtractionType.DEGUSTACION);
+		Atraction adventureAttraction = new Atraction("Parque", 50, 50, 3, AtractionType.AVENTURA);
+		Atraction landscapeAttraction = new Atraction("Montana", 50, 50, 1, AtractionType.PAISAJE);
+		Atraction tastingAttraction = new Atraction("Bar", 10, 10, 3, AtractionType.DEGUSTACION);
 
 		ArrayList<Atraction> aventuraPack_Atractions = new ArrayList<Atraction>();
-		aventuraPack_Atractions.add(atractionAventura);
-		aventuraPack_Atractions.add(atractionPaisaje);
+		aventuraPack_Atractions.add(adventureAttraction);
+		aventuraPack_Atractions.add(landscapeAttraction);
 
 		ArrayList<Atraction> absolutaPack_Atractions = new ArrayList<Atraction>();
-		absolutaPack_Atractions.add(atractionDegustacion);
-		absolutaPack_Atractions.add(atractionPaisaje);
+		absolutaPack_Atractions.add(tastingAttraction);
+		absolutaPack_Atractions.add(landscapeAttraction);
 
 		Porcentual promotionPorcentaje = new Porcentual(aventuraPack_Atractions, 0.5);
 		Absoluta promotionAbsoluta = new Absoluta(absolutaPack_Atractions, 10);

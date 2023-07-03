@@ -1,8 +1,6 @@
 package entities;
 
 import java.util.ArrayList;
-import java.util.Objects;
-
 import enums.AtractionType;
 
 public abstract class Offer {

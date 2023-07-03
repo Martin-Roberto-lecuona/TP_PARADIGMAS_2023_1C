@@ -76,7 +76,7 @@ public class Atraction extends Offer implements Comparable<Atraction> {
 
 			boolean alreadyTakenBoolean = !user.alreadyTaken(offerArray.get(cont[0]), alreadyTakenArray);
 
-			if (user.canGo((Atraction) offerArray.get(cont[0])) && alreadyTakenBoolean && show) {
+			if (show && user.canGo((Atraction) offerArray.get(cont[0])) && alreadyTakenBoolean) {
 				cont[0]++;
 				return offerArray.get(cont[0] - 1);
 			}
